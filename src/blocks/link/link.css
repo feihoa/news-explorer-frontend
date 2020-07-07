@@ -1,0 +1,14 @@
+@import url(./_active/link_active.css);
+
+.link{
+  cursor: url('../../images/lapka.png'), pointer;
+  list-style: none;
+  text-decoration: none;
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+
+
+}

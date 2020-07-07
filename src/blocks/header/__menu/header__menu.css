@@ -1,0 +1,12 @@
+
+.header__menu{
+  display: flex;
+
+  font-size: 18px;
+  line-height: 24px;
+
+  align-self: center;
+  justify-self: center;
+  list-style: none;
+
+}

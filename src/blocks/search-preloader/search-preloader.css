@@ -1,0 +1,12 @@
+@import url(./__preloader/search-preloader__preloader.css);
+@import url(./__text/search-preloader__text.css);
+@import url(./_hidden/search-preloader_hidden.css);
+
+.search-preloader{
+  color: #B6BCBF;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  background: #F5F6F7;
+
+
+}

@@ -1,0 +1,22 @@
+.news-card__show-more-button{
+
+  font-weight: 500;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 56px auto 80px auto;
+  padding: 18px 84px 22px 84px;
+  border-radius: 80px;
+  cursor: url('../../../images/lapka.png'), pointer;
+
+  border: none;
+  outline-style: none;
+  opacity: 1;
+
+}
+.news-card__show-more-button:hover{
+
+  background: #EEEEEE;
+  opacity: 0.9;
+}

@@ -1,0 +1,9 @@
+@import url("./_hidden/search__title_hidden.css");
+
+.search__title{
+  font-size: 60px;
+  line-height: 64px;
+  max-width: 608px;
+  margin-bottom: 32px;
+  margin-top: 80px;
+}

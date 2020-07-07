@@ -1,0 +1,12 @@
+.footer__menu-links{
+  display: flex;
+  padding: 0px;
+  list-style: none;
+  align-items: center;
+
+  font-size: 18px;
+  line-height: 24px;
+
+  text-align: center;
+  margin-right: 30px;
+}

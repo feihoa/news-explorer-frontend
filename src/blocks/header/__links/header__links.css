@@ -1,0 +1,9 @@
+.header__links{
+
+width: calc(100% - 208px);
+margin: 0;
+justify-self: center;
+display: flex;
+margin: 0px auto 0px auto;
+justify-content: space-between;
+}

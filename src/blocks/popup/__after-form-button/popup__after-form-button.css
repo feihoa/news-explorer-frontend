@@ -1,0 +1,28 @@
+.popup__after-form-button{
+  display: inline-block;
+  padding: 0;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  border: none;
+  color: #2F71E5;
+  background-color: white;
+  box-shadow: none;
+
+}
+
+.popup__after-form-button:hover{
+  outline: none;
+  background: transparent;
+  border: none;
+  color: #347EFF;
+  opacity: 0.8;
+}
+
+.popup__after-form-button:active {
+  outline: none;
+  background: transparent;
+  border: none;
+  color: #2A65CC;
+  opacity: 0.5;
+}

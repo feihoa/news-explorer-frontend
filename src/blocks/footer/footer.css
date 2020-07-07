@@ -1,0 +1,14 @@
+@import url(./__copyright/footer__copyright.css);
+@import url(./__menu/footer__menu.css);
+@import url(./__menu-links/footer__menu-links.css);
+@import url(./__link-main/footer__link-main.css);
+@import url(./__link-praktikum/footer__link-praktikum.css);
+@import url(./__social-links/footer__social-links.css);
+@import url(./__link-github/footer__link-github.css);
+@import url(./__link-fb/footer__link-fb.css);
+
+.footer{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}

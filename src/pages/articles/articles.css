@@ -1,0 +1,5 @@
+@import url(../../vendor/normalize.css);
+
+*{
+  border: 1px solid red;
+}

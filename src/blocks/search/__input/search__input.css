@@ -1,0 +1,21 @@
+.search__input{
+
+  font-size: 16px;
+  line-height: 22px;
+
+  color: #B6BCBF;
+
+  display: inline-block;
+  margin: 0px 40px 0px 24px;
+
+  max-width: 376px;
+  width: 100%;
+  border: 0px;
+
+}
+
+.search__input:focus {
+  outline: none;
+  border: none;
+  color: black;
+}
