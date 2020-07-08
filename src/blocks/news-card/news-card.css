@@ -2,11 +2,14 @@
 @import url(./__date/news-card__date.css);
 @import url(./__content/news-card__content.css);
 @import url(./__name/news-card__name.css);
-@import url(./__save-icon/news-card__save-icon.css);
+@import url(./__icon/news-card__icon.css);
+@import url(./__key-word/news-card__key-word.css);
 @import url(./__source/news-card__source.css);
 @import url(./__text/news-card__text.css);
 @import url(./__icon-svg/news-card__icon-svg.css);
 @import url(./__pop-up-line/news-card__pop-up-line.css);
+@import url(./pop-up-line-hidden/news-card__pop-up-line-hidden.css);
+@import url(./__icon-svg-articles/news-card____icon-svg-articles.css);
 
 .news-card{
   background-color: #fff;
@@ -18,7 +21,7 @@
   margin-bottom: 16px;
   margin-top: 24px;
   margin-right: 16px;
-  width: 400px;
+  width: 100%;
 
 
 }

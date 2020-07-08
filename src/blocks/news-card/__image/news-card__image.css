@@ -1,7 +1,7 @@
 
 .news-card__image {
   height: 272px;
-  width: 400px;
+  width: 100%;
   background-image: url(https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg);
 
   background-size: cover;
@@ -14,7 +14,7 @@
 .news-card__image::after {
   content: '';
   display: block;
-  width: 400px;
+  width: 100%;
   height: 272px;
   background-color: rgba(0, 0, 0, .3);
   border-top-left-radius: 10px;

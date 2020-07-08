@@ -1,0 +1,8 @@
+.news-card__icon-svg_black-article{
+  padding: 8px;
+}
+
+.news-card__icon-svg_black-articles:hover #card-svg{
+  stroke: #1A1B22;
+  fill:#1A1B22;
+}

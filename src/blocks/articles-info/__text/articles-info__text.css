@@ -1,0 +1,8 @@
+.articles-info__text{
+
+  min-width: 180px;
+  color: rgba(26, 27, 34, 0.5);
+  width: calc(100% - 208px);
+  margin: 40px auto 28px auto;
+
+}

@@ -9,6 +9,9 @@
   align-items: center;
   text-align: center;
 
+}
 
+.link:hover{
+  opacity: .85;
 
 }

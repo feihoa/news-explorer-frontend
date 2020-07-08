@@ -6,5 +6,5 @@
 .news-card__icon-svg_blue:hover #card-svg{
   stroke: #2F71E5;
   fill: #2F71E5;
-  opacity: 0.9;
+  z-index: 4;
 }
