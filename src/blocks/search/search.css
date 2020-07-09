@@ -13,3 +13,14 @@
   align-items: center;
   justify-content: center;
 }
+
+
+@media screen and (max-width: 808px){
+  .search{
+    width: 95%;
+    margin: auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
+  }
+}
+
