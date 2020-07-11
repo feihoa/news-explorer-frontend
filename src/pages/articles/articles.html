@@ -8,7 +8,7 @@
   <link rel="icon" href="<%=require('../../images/favicon.ico').default%>">
 </head>
 <body>
-  <div class="page">
+  <div class="page page-articles">
     <header class="header">
       <div class="header__links">
       <a class="link logo logo_black header__logo" href="./index.html">NewsExplorer</a>
@@ -16,11 +16,11 @@
         <ul class="header__menu-links">
           <li class="header__menu-link"><a href="./index.html" class="link  text text_black header__link-main">Главная</a></li>
           <li class="header__menu-link"><a href="../articles.html" class="link link_active link_active_black text text_black header__link-saved">Сохранённые статьи</a></li>
-          <li class="header__menu-button"><button class="button button_edged button_circled_black text text_black header__link-logout">Грета
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M10 6L6 6L6 18H10V20H6C4.89543 20 4 19.1046 4 18V6C4 4.89543 4.89543 4 6 4H10V6ZM17.5856 13L13.2927 17.1339L14.707 18.4958L21.4141 12.0371L14.707 5.57837L13.2927 6.9402L17.5856 11.0741H8V13H17.5856Z" fill="#1A1B22"/>
-            </svg>
-          </button></li>
+          <li class="header__menu-button">
+          <button class="button button_circled button_circled_black text text_black header__link-logout">Грета
+            <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M10 6H6v12h4v2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4v2zm7.586 7l-4.293 4.134 1.414 1.362 6.707-6.459-6.707-6.459-1.414 1.362 4.293 4.134H8V13h9.586z" fill="#1A1B22"/></svg>
+          </button>
+        </li>
         </ul>
       </nav>
     </div>
@@ -38,7 +38,7 @@
 
       <div class="news-card">
         <div class="news-card__image">
-          <span class="text news-card__key-word">Тайга</span>
+          <span class="text news-card__key-word">Природа</span>
           <button class="button news-card__icon news-card__save-icon news-card__icon news-card__icon-svg_black-articles">
             <svg class="news-card__icon-svg news-card__icon-svg-articles" width="21" height="21" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path id="card-svg" fill-rule="evenodd" clip-rule="evenodd" d="M12 0H6V2H0V4H18V2H12V0ZM2 6V17C2 18.1046 2.89543 19 4 19H14C15.1046 19 16 18.1046 16 17V6H14V17H4V6H2ZM6 6L6 15H8L8 6H6ZM10 6V15H12V6H10Z" fill="#B6BCBF"/>
@@ -133,27 +133,16 @@
       <p class="text footer__copyright">&#169; 2020 Supersite, Powered by News API</p>
       <div class="footer__menu">
         <ul class="footer__menu-links">
-          <li class="footer__menu-link"><a href="#" class="link text text_black footer__link-main">Главная</a></li>
-          <li class="footer__menu-link"><a href="#" class="link text text_black footer__link-praktikum">Яндекс.Практикум</a></li>
+          <li class="footer__menu-link"><a href="./index.html" class="link text text_black footer__link-main">Главная</a></li>
+          <li class="footer__menu-link"><a href="https://praktikum.yandex.ru/" class="link text text_black footer__link-praktikum">Яндекс.Практикум</a></li>
         </ul>
       </div>
         <div class="footer__social-links">
-          <a href="#" alt="github" class="link footer__link-github">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9998 1.89473C6.41678 1.89473 1.89453 6.42318 1.89453 12C1.89453 16.4664 4.7915 20.2505 8.80507 21.5904C9.30754 21.6834 9.49364 21.3733 9.49364 21.1003C9.49364 20.8584 9.48744 20.2256 9.48123 19.382C6.67111 19.9899 6.07559 18.0297 6.07559 18.0297C5.61654 16.8634 4.95278 16.5533 4.95278 16.5533C4.03469 15.9267 5.02102 15.9391 5.02102 15.9391C6.03217 16.0136 6.57186 16.9813 6.57186 16.9813C7.47135 18.5259 8.93534 18.0793 9.51225 17.8187C9.6053 17.1674 9.86584 16.7207 10.1512 16.4664C7.90558 16.2121 5.54831 15.3436 5.54831 11.4727C5.54831 10.3685 5.93912 9.46902 6.59047 8.76184C6.48501 8.5075 6.13762 7.47775 6.68972 6.0882C6.68972 6.0882 7.53958 5.81525 9.46882 7.12416C10.2753 6.90084 11.1375 6.78918 11.9998 6.78297C12.8559 6.78918 13.7243 6.90084 14.5308 7.12416C16.46 5.81525 17.3099 6.0882 17.3099 6.0882C17.862 7.47775 17.5146 8.5075 17.4091 8.76184C18.0543 9.46902 18.4451 10.3685 18.4451 11.4727C18.4451 15.356 16.0816 16.2059 13.8298 16.4602C14.1896 16.7704 14.5184 17.3907 14.5184 18.3336C14.5184 19.6859 14.5059 20.7715 14.5059 21.1065C14.5059 21.3795 14.6858 21.6896 15.2007 21.5904C19.2143 20.2505 22.1051 16.4664 22.1051 12.0062C22.1051 6.42318 17.5828 1.89473 11.9998 1.89473Z" fill="#191717"/>
-            </svg>
+          <a href="https://github.com/" alt="github" class="link footer__link-github">
+            <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1.895C6.417 1.895 1.895 6.423 1.895 12c0 4.466 2.897 8.25 6.91 9.59.503.093.689-.217.689-.49 0-.242-.006-.874-.013-1.718-2.81.608-3.405-1.352-3.405-1.352-.46-1.167-1.123-1.477-1.123-1.477-.918-.626.068-.614.068-.614 1.011.075 1.551 1.042 1.551 1.042.9 1.545 2.364 1.098 2.94.838.094-.652.354-1.098.64-1.353-2.246-.254-4.603-1.122-4.603-4.993 0-1.105.39-2.004 1.042-2.711-.106-.254-.453-1.284.099-2.674 0 0 .85-.273 2.78 1.036A9.806 9.806 0 0112 6.783a9.842 9.842 0 012.531.341c1.93-1.309 2.78-1.036 2.78-1.036.551 1.39.204 2.42.098 2.674.646.707 1.036 1.606 1.036 2.71 0 3.884-2.363 4.734-4.615 4.988.36.31.689.93.689 1.874 0 1.352-.013 2.438-.013 2.773 0 .273.18.583.695.483 4.014-1.34 6.904-5.124 6.904-9.584 0-5.583-4.522-10.111-10.105-10.111z" fill="#191717"/></svg>
           </a>
-          <a href="#" alt="fb" class="link footer__link-fb">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g clip-path="url(#clip0)">
-              <path d="M20.8958 2H3.10417C2.49417 2 2 2.49417 2 3.10417V20.8967C2 21.5058 2.49417 22 3.10417 22H12.6833V14.255H10.0767V11.2367H12.6833V9.01083C12.6833 6.4275 14.2608 5.02083 16.5658 5.02083C17.67 5.02083 18.6183 5.10333 18.895 5.14V7.84L17.2967 7.84083C16.0433 7.84083 15.8008 8.43667 15.8008 9.31V11.2375H18.79L18.4008 14.2558H15.8008V22H20.8975C21.5058 22 22 21.5058 22 20.8958V3.10417C22 2.49417 21.5058 2 20.8958 2V2Z" fill="black"/>
-              </g>
-              <defs>
-              <clipPath id="clip0">
-              <rect width="20" height="20" fill="white" transform="translate(2 2)"/>
-              </clipPath>
-              </defs>
-            </svg>
+          <a href="facebook.com" alt="fb" class="link footer__link-fb">
+            <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M23 12c0 6.075-4.925 11-11 11S1 18.075 1 12 5.925 1 12 1s11 4.925 11 11zm-9.197.43h1.962l.26-2.524h-2.222V8.418c0-.557.368-.688.63-.688h1.599V5.277l-2.203-.01c-2.445 0-3 1.832-3 3.001v1.635H9.414v2.528h1.415v7.19h2.974v-7.19z" fill="#1A1B22"/></svg>
           </a>
         </div>
     </footer>

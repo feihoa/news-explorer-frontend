@@ -1,9 +1,15 @@
 .header__links{
 
-width: calc(100% - 208px);
+width: calc(100% - 144px);
 margin: 0;
 justify-self: center;
 display: flex;
 margin: 0px auto 0px auto;
 justify-content: space-between;
+}
+
+@media screen and (max-width: 700px){
+  .header__links{
+    width: calc(100% - 28px);
+  }
 }

@@ -10,3 +10,14 @@
   list-style: none;
 
 }
+
+
+
+    @media screen and (max-width: 700px){
+      .header__menu{
+        width: 100%;
+        margin-left: -15px;
+        position: relative;
+
+      }
+    }

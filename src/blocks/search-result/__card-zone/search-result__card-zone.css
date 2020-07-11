@@ -4,10 +4,9 @@
   grid-gap: 16px 16px;
   justify-content: center;
   max-width: 1440px;
-  width: 95%;
   margin: auto;
-  margin-top: 2%;
-  margin-bottom: 2%;
+  width: calc(100% - 144px);
+
 
 }
 
@@ -30,6 +29,11 @@
 @media screen and (max-width: 767px) and (min-width: 320px){
   .search-result__card-zone{
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  }
+}
+@media screen and (max-width: 720px){
+  .search-result__card-zone{
+    width: calc(100% - 32px);
   }
 }
 

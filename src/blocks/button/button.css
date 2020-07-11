@@ -1,5 +1,5 @@
-@import url(./_edged/button_edged.css);
-@import url(./circled_black/button_circled_black.css);
+@import url(./_circled/button_circled.css);
+@import url(./_circled_black/button_circled_black.css);
 
 .button{
   cursor: url('../../images/lapka.png'), pointer;

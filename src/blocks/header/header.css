@@ -5,8 +5,10 @@
 @import url("./__link-auth/header__link-auth.css");
 @import url("./__link-saved/header__link-saved.css");
 @import url("./__link-logout/header__link-logout.css");
+@import url("./__menu-links_hidden/header__menu-links-hidden.css");
 
 .header{
+
     max-width:1440px;
     min-width: 300px;
     width: 100%;
@@ -20,3 +22,11 @@
     flex-wrap: wrap;
 
 }
+@media screen and (max-width: 700px){
+  .header{
+    border-bottom: 0px solid rgba(0, 0, 0, 0.2);
+
+  }
+
+}
+

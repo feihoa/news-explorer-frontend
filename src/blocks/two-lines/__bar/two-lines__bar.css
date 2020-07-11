@@ -1,0 +1,14 @@
+@import url(./_first/two-lines__bar_first.css);
+@import url(./_second/two-lines__bar_second.css);
+
+@media screen and (max-width: 720px){
+
+.two-lines__bar{
+  width: 16px;
+  height: 2px;
+  transition: 0.4s;
+  background: #FFFFFF;
+
+
+}
+  }
