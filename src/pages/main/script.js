@@ -1,7 +1,14 @@
 import "./index.css";
+import "./../../js/index.js";
 
+import {MenuChange} from "./../../js/index.js";
 
+document.querySelector('#two-lines').addEventListener("click", function () {
+  document.querySelector('#two-lines').classList.toggle("change");
+  MenuChange(document.querySelector('#header'), 'header_menu-mobile-opened');
+  MenuChange(document.querySelector('#headerMenuLinks'), 'header__menu-links-hidden');
 
+});
 
 // import {Api} from "./js/Api.js";
 // import {Card} from "./js/Card.js";

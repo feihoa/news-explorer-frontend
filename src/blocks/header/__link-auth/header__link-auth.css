@@ -6,7 +6,7 @@
 
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 600px) {
   .header__link-auth{
     width: calc(100vw - 28px);
     margin-bottom: 24px;

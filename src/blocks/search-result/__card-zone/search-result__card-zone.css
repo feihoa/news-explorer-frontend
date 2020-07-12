@@ -10,9 +10,9 @@
 
 }
 
- @media screen and (min-width: 1440px) {
+ @media screen and (min-width: 1441px) {
   .search-result__card-zone{
-  grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(390px, 1fr));
   }
 }
 @media screen and (max-width: 1079px) and (min-width: 1018px){
@@ -22,6 +22,7 @@
 }
  @media screen and (max-width: 1017px) and (min-width: 768px){
   .search-result__card-zone{
+  width: calc(100% - 32px);
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   }
 }

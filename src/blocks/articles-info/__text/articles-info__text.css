@@ -6,7 +6,7 @@
   margin: 40px auto 28px auto;
 
 }
-@media screen and (max-width: 700px){
+@media screen and (max-width: 600px){
   .articles-info__text{
     width: 100%
   }

@@ -3,3 +3,17 @@
   list-style: none;
   text-decoration: none;
 }
+
+
+@media screen and (max-width: 700px){
+  .footer__link-main{
+    margin-right: 15px;
+  }
+}
+
+
+@media screen and (max-width: 370px){
+  .footer__link-main{
+    margin-right: 0;
+  }
+}

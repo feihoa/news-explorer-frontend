@@ -12,13 +12,13 @@
     <section class="search-main">
       <header class="header" id="header">
         <div class="header__links">
-        <a class="link logo header__logo" href="./index.html">NewsExplorer</a>
-        <nav class="header__menu "> <!-- мобильная версия при > 700px -->
-          <div class="two-lines" onclick="change(this)">
-            <div class="two-lines__bar two-lines__bar_first"></div>
-            <div class="two-lines__bar two-lines__bar_second"></div>
+        <a id="logo" class="link logo header__logo" href="./index.html">NewsExplorer</a>
+        <nav class="header__menu "> <!-- мобильная версия при > 600px -->
+          <div id="two-lines" class="two-lines">
+            <div class="two-lines__bar two-lines__bar_white two-lines__bar_first"></div>
+            <div class="two-lines__bar two-lines__bar_white two-lines__bar_second"></div>
           </div>
-          <ul id="header__menu-links" class="header__menu-links header__menu-links-hidden">
+          <ul id="headerMenuLinks" class="header__menu-links header__menu-links-hidden">
             <li class="header__menu-link"><a href="./index.html" class="link link_active link_active_white text text_white header__link-main">Главная</a></li>
             <!-- <li class="header__menu-button"><button class="button button_circled text text_white header__link-auth">Авторизироваться</button></li> -->
             <li class="header__menu-link"><a href="../articles.html" class="link text text_white header__link-saved">Сохранённые статьи</a></li>
@@ -98,14 +98,14 @@
     </section>
 
     <!-- Preloader -->
-    <section class="search-preloader search-preloader_hidden1">
+    <section class="search-preloader search-preloader_hidden">
       <i class="circle-preloader search-preloader__preloader"></i>
       <p class="text search-preloader__text">Идет поиск новостей...</p>
     </section>
     <!-- preloader -->
 
     <!-- Ничего не найдено -->
-    <section class="not-found not-found_hidden1">
+    <section class="not-found not-found_hidden">
       <svg class="not-found__img" width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="43" cy="43" r="36.5" stroke="#D1D2D6"/>
         <path d="M69 69l19.5 19.5M58.328 55.959c-3.667-4.261-9.1-6.96-15.164-6.96-6.063 0-11.496 2.699-15.164 6.96" stroke="#D1D2D6"/>
@@ -215,24 +215,24 @@
     </footer>
   </div>
   <script> // временно лежит тут
-    function change(x) {
-        x.classList.toggle("change");
-        if(document.querySelector('#header').classList.contains('header_menu-mobile-opened')) {
-          document.querySelector('#header').classList.remove('header_menu-mobile-opened');
+  //   function change(x) {
+  //       x.classList.toggle("change");
+  //       if(document.querySelector('#header').classList.contains('header_menu-mobile-opened')) {
+  //         document.querySelector('#header').classList.remove('header_menu-mobile-opened');
 
-      } else {
+  //     } else {
 
-        document.querySelector('#header').classList.add('header_menu-mobile-opened');
-    }
-    if(document.querySelector('#header__menu-links').classList.contains('header__menu-links-hidden')) {
-      document.querySelector('#header__menu-links').classList.remove('header__menu-links-hidden');
+  //       document.querySelector('#header').classList.add('header_menu-mobile-opened');
+  //   }
+  //   if(document.querySelector('#header__menu-links').classList.contains('header__menu-links-hidden')) {
+  //     document.querySelector('#header__menu-links').classList.remove('header__menu-links-hidden');
 
-      } else {
+  //     } else {
 
-        document.querySelector('#header__menu-links').classList.add('header__menu-links-hidden');
-    }
+  //       document.querySelector('#header__menu-links').classList.add('header__menu-links-hidden');
+  //   }
 
-  }
+  // }
     </script>
 </body>
 </html>

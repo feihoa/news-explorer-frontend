@@ -1,8 +1,26 @@
 .footer__copyright{
   font-size: 16px;
   line-height: 22px;
-
+  margin-right: 20px;
   color: #B6BCBF;
-  margin: 32px auto 26px 7.22%;
+  /* margin: 32px auto 26px 7.22%; */
 
+}
+
+
+@media screen and (max-width: 660px){
+  .footer__copyright{
+    margin-right: 20px;
+    width: 95%;
+    text-align: center;
+}
+}
+
+@media screen and (min-width: 538px) and (max-width: 660px){
+  .footer{
+    margin-top: 40px;
+    flex-wrap: wrap-reverse;
+    width: 100%;
+
+}
 }

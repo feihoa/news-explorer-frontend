@@ -7,7 +7,7 @@
   margin-bottom: -1px;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 600px) {
   .link_active{
     display: none;
     padding-bottom: 0px;

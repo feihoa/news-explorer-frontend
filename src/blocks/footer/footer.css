@@ -9,6 +9,33 @@
 
 .footer{
   display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  margin: 0px auto 0px auto;
+
+}
+@media screen and (max-width: 700px) and (min-width: 656px){
+  .footer{
+    width: 95%;
+
+}
+}
+@media screen and (max-width: 655px) and (min-width: 371px){
+  .footer{
+    margin-top: 40px;
+    flex-wrap: wrap-reverse;
+
+}
+}
+@media screen and (max-width: 370px) {
+  .footer{
+    max-width:1440px;
+    min-width: 300px;
+    width: 95%;
+    margin-top: 40px;
+    flex-wrap: wrap-reverse;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
 }

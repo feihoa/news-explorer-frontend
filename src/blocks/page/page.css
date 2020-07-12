@@ -6,7 +6,6 @@
 @import url(../button/button.css);
 @import url(../text/text.css);
 @import url(../two-lines/two-lines.css);
-@import url(../logo/logo.css);
 @import url(../link/link.css);
 @import url(../header/header.css);
 @import url(../header/_menu-mobile-opened/header_menu-mobile-opened.css);
@@ -16,7 +15,7 @@
 @import url(../footer/footer.css);
 
 *{
-  border: .1px solid red;
+  /* border: .1px solid red; */
 }
 
 .page{
