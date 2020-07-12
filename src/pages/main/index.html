@@ -124,7 +124,7 @@
             <img src="<%=require('../../images/close.svg').default%>" alt="close" class="popup__close">
             <form class="popup__form">
               <fieldset class="popup__fieldset">
-                </legend class="title popup__title">Вход</legend>
+                <legend class="title popup__title">Вход</legend>
                   <p class="text popup__form-text">Email</p>
                   <input type="email" minlength="2" maxlength="30" required name="userEmail" class="popup__input " required placeholder="Введите почту">
                   <span  class="error">Неправильный формат email</span>
@@ -133,6 +133,7 @@
                   <input type="password" name="userPassword" minlength="8" maxlength="30" required class="popup__input " required  placeholder="Введите пароль">
                   <span  class="error"></span>
 
+                  <span  class="error error_server">33</span>
                   <button type="submit" class="button popup__button popup__button-submit">Войти</button>
               </fieldset>
             </form>
@@ -143,7 +144,7 @@
 
         <!-- popup registration-->
 
-        <div  class="popup popup_registration popup_hidden" >
+        <div  class="popup popup_registration popup_hidden1" >
           <div class="popup__content">
             <img src="<%=require('../../images/close.svg').default%>" alt="close" class="popup__close">
             <form class="popup__form">
@@ -152,17 +153,17 @@
                   <p class="text popup__form-text">Email</p>
 
                   <input type="email" minlength="2" maxlength="30" required name="userEmail" class="popup__input" required placeholder="Введите почту">
-                  <span  class="error">Неправильный формат email</span>
+                  <!-- <span  class="error">Неправильный формат email</span> -->
 
                   <p class="text popup__form-text">Пароль</p>
                   <input type="password" name="userPassword" minlength="8" maxlength="30" required class="popup__input" required  placeholder="Введите пароль">
-                  <span  class="error">3</span>
+                  <!-- <span  class="error">3</span> -->
 
                   <p class="text popup__form-text">Имя</p>
                   <input type="password" name="userPassword" minlength="2" maxlength="30" required class="popup__input" required  placeholder="Введите свое имя">
-                  <span  class="error">33</span>
+                  <!-- <span  class="error">33</span> -->
 
-                  <span  class="error error_server">33</span>
+                  <!-- <span  class="error error_server">33</span> -->
                   <button type="submit" class="button popup__button popup__button-submit">Зарегистрироваться</button>
                 </fieldset>
               </form>

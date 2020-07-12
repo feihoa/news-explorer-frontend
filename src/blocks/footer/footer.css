@@ -9,22 +9,23 @@
 
 .footer{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  width: 100%;
-  margin: 0px auto 0px auto;
+  width: 94%;
 
 }
-@media screen and (max-width: 700px) and (min-width: 656px){
+@media screen and (max-width: 700px) and (min-width: 661px){
   .footer{
     width: 95%;
 
 }
 }
-@media screen and (max-width: 655px) and (min-width: 371px){
+@media screen and (max-width: 660px) and (min-width: 371px){
   .footer{
     margin-top: 40px;
     flex-wrap: wrap-reverse;
+    width: 90%;
+
 
 }
 }
@@ -32,7 +33,7 @@
   .footer{
     max-width:1440px;
     min-width: 300px;
-    width: 95%;
+    width: 97%;
     margin-top: 40px;
     flex-wrap: wrap-reverse;
     justify-content: flex-start;

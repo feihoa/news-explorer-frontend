@@ -4,6 +4,7 @@
 
 .articles-info{
   display: flex;
+  align-self: start;
   flex-direction: column;
   justify-content: center;
   align-items: center;

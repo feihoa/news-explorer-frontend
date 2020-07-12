@@ -7,3 +7,8 @@
 
   color: #2F71E5;
 }
+@media screen and (max-width: 500px) {
+  .popup__form-text{
+    margin-top: 9px;
+    margin-bottom: 2px;  }
+}
