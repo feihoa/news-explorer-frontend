@@ -16,7 +16,7 @@
 
 
 .page{
-  font-family: 'Inter', 'Roboto Slab', 'Sourcesanspro', 'sans-serif', 'Roboto';
+  font-family: 'Inter', 'Roboto Slab', 'Sourcesanspro', 'Roboto', Arial, Helvetica, sans-serif;
   min-width: 320px;
   display: flex;
   align-items: center;

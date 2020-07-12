@@ -2,7 +2,7 @@
   position: relative;
 
   background: #FFFFFF;
-  font-family: 'Roboto';
+  font-family: 'Roboto', sans-serif, Arial, Helvetica;
 
   border: 1px solid #D1D2D6;
   box-sizing: border-box;

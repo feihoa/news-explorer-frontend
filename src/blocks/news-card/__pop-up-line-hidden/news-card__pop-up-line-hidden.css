@@ -1,4 +1,3 @@
-@media screen and (max-width: 800px){
 
 .news-card__pop-up-line-hidden{
   display: none;
@@ -11,4 +10,3 @@
   visibility: hidden;
   opacity: 0;
   }
-}
