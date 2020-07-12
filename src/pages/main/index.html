@@ -21,7 +21,7 @@
           <ul id="headerMenuLinks" class="header__menu-links header__menu-links-hidden">
             <li class="header__menu-link"><a href="./index.html" class="link link_active link_active_white text text_white header__link-main">Главная</a></li>
             <!-- <li class="header__menu-button"><button class="button button_circled text text_white header__link-auth">Авторизироваться</button></li> -->
-            <li class="header__menu-link"><a href="../articles.html" class="link text text_white header__link-saved">Сохранённые статьи</a></li>
+            <li class="header__menu-link"><a href="./articles.html" class="link text text_white header__link-saved">Сохранённые статьи</a></li>
             <li class="header__menu-button"><button class="button button_circled text text_white header__link-logout">Грета
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M10 6H6v12h4v2H6a2 2 0 01-2-2V6a2 2 0 012-2h4v2zm7.586 7l-4.293 4.134 1.414 1.362 6.707-6.459-6.707-6.459-1.414 1.362 4.293 4.134H8V13h9.586z" fill="#FFF"/></svg>
             </button></li>
@@ -35,7 +35,7 @@
         <p class="text text_white search__description">Введите в поиске любую тему и узнайте, насколько популярной она была в новостях за прошедшую неделю.</p>
         <form class="search__search-field">
           <input id="search-input" type="text" name="keyword" required minlength="2" maxlength="30" class="search__input" placeholder="Введите тему новости">
-          <span id='search-error' class="error"></span>
+          <!-- <span id='search-error' class="error"></span> -->
           <button class="button search__button">Искать</button>
         </form>
       </section>
@@ -144,7 +144,7 @@
 
         <!-- popup registration-->
 
-        <div  class="popup popup_registration popup_hidden1" >
+        <div  class="popup popup_registration popup_hidden" >
           <div class="popup__content">
             <img src="<%=require('../../images/close.svg').default%>" alt="close" class="popup__close">
             <form class="popup__form">
@@ -215,25 +215,5 @@
         </div>
     </footer>
   </div>
-  <script> // временно лежит тут
-  //   function change(x) {
-  //       x.classList.toggle("change");
-  //       if(document.querySelector('#header').classList.contains('header_menu-mobile-opened')) {
-  //         document.querySelector('#header').classList.remove('header_menu-mobile-opened');
-
-  //     } else {
-
-  //       document.querySelector('#header').classList.add('header_menu-mobile-opened');
-  //   }
-  //   if(document.querySelector('#header__menu-links').classList.contains('header__menu-links-hidden')) {
-  //     document.querySelector('#header__menu-links').classList.remove('header__menu-links-hidden');
-
-  //     } else {
-
-  //       document.querySelector('#header__menu-links').classList.add('header__menu-links-hidden');
-  //   }
-
-  // }
-    </script>
 </body>
 </html>

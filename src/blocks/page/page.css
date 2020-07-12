@@ -14,9 +14,6 @@
 @import url(../news-card/news-card.css);
 @import url(../footer/footer.css);
 
-*{
-  /* border: .1px solid red; */
-}
 
 .page{
   font-family: 'Inter', 'Roboto Slab', 'Sourcesanspro', 'sans-serif', 'Roboto';
@@ -25,7 +22,4 @@
   align-items: center;
   flex-direction: column;
   justify-content: center;
-
-
-/* scrollbar-width: none; */
 }

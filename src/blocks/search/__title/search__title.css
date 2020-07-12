@@ -8,3 +8,15 @@
   margin-top: 80px;
   color: white;
 }
+
+
+
+@media screen and (max-width: 600px){
+  .search__title{
+    margin-top: 30px;
+    font-size: 36px;
+    line-height: 40px;
+    width: 70%;
+    align-self: flex-start;
+  }
+}

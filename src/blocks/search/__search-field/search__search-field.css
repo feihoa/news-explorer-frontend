@@ -1,4 +1,6 @@
 .search__search-field{
+  position: relative;
+
   background: #FFFFFF;
   font-family: 'Roboto';
 
@@ -19,4 +21,10 @@
 
   max-height: 64px;
 
+}
+
+@media screen and (max-width: 600px){
+  .search__search-field{
+    display: block;
+  }
 }
