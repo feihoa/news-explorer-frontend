@@ -4,6 +4,7 @@ import {MenuChange} from "./../../js/index.js";
 
 (function () {
 
+
 document.querySelector('#two-lines').addEventListener("click", function () {
   document.querySelector('#two-lines').classList.toggle("change");
   if (window.screen.width <= 600) {

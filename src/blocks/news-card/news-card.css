@@ -8,9 +8,11 @@
 @import url(./__text/news-card__text.css);
 @import url(./__icon-svg/news-card__icon-svg.css);
 @import url(./__pop-up-line/news-card__pop-up-line.css);
-@import url(./pop-up-line-hidden/news-card__pop-up-line-hidden.css);
+@import url(./__pop-up-line-hidden/news-card__pop-up-line-hidden.css);
+@import url(./__key-word_down/news-card__key-word_down.css);
 
 .news-card{
+  position: relative;
   background-color: #fff;
   border-radius: 10px;
   min-height: 576px;

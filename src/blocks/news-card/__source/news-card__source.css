@@ -8,5 +8,15 @@
 
   color: #B6BCBF;
   margin: 0px;
+  position: absolute;
+  bottom: 24px;
+    left: 24px;
 
+}
+
+@media screen and (max-width: 800px){
+  .news-card__source{
+    bottom: 26px;
+    left: 16px;
+  }
 }
