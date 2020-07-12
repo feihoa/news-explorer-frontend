@@ -21,18 +21,25 @@ https://Maliiya.github.io/news-explorer-frontend/
 
 Скопировать проект к себе командой 
 
-**Code:** git clone <br />
+* **Code:** git clone <br />
 
 Установить необходимые пакеты командой 
 
-**Code:** npm i <br />
+* **Code:** npm i <br />
 
 Команда 
-**Code:** npm run build  <br />
+
+* **Code:** npm run build  <br />
 создаст папку dist с финальной версией проекта для отправки на сервер
+
 Команда 
-**Code:** npm run dev  <br />
+
+* **Code:** npm run dev  <br />
+
 запускает проект с hot reload
+
 Команда 
-**Code:** npm run deploy  <br />
+
+* **Code:** npm run deploy  <br />
+
 скопирует папку dist в репозиторий на Github в ветку gh-pages
