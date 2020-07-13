@@ -10,6 +10,7 @@
 @import url(./__title/popup__title.css);
 @import url(./__text-after-button/popup__text-after-button.css);
 @import url(./__form-text/popup__form-text.css);
+@import url(./__successful-registration/popup__successful-registration.css);
 
 .popup{
   font-family: 'Inter', sans-serif, Arial, Helvetica;
