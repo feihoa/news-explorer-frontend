@@ -9,12 +9,6 @@
 
 }
 
-@media screen and (max-width: 1024px) {
-  .popup-successful-registration__content{
-  }
-}
-
-
 @media screen and (max-width: 600px) {
   .popup-successful-registration__content{
     width: 100%;

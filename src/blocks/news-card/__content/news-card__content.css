@@ -1,8 +1,7 @@
 
 .news-card__content{
   margin: 20px 24px 24px 24px;
-  word-break: break-word;
-
+  word-wrap: break-word;
 }
 
 @media screen and (max-width: 800px){
