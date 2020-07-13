@@ -28,7 +28,7 @@
   }
 }
 
- @media screen and (max-width: 821px) and (min-width: 320px){
+ @media screen and (max-width: 821px) {
   .search-result__card-zone{
     width: calc(100% - 32px);
   grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
