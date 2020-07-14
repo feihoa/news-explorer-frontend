@@ -1,0 +1,17 @@
+.header__link-main{
+  margin-top: 10px;
+
+  margin: 0;
+  margin-right: 32px;
+
+}
+
+@media screen and (max-width: 600px) {
+  .header__link-main{
+    margin-top: 10px;
+    font-size: 18px;
+    line-height: 311%;
+    width: 100%;
+    margin-left: 3%;
+  }
+}

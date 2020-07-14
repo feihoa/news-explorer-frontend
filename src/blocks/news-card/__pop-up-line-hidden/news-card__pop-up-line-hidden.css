@@ -1,0 +1,12 @@
+
+.news-card__pop-up-line-hidden{
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.news-card__save-icon:hover + .news-card__pop-up-line-hidden{
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+  }

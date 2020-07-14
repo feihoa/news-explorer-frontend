@@ -1,0 +1,25 @@
+.footer__menu-links{
+  display: flex;
+  padding: 0px;
+  list-style: none;
+  align-items: center;
+
+  font-size: 18px;
+  line-height: 24px;
+
+  text-align: center;
+  margin-right: 30px;
+}
+
+@media screen and (max-width: 900px){
+  .footer__menu-links{
+    margin-right: 15px;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .footer__menu-links{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

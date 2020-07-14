@@ -1,0 +1,20 @@
+.about-author__text{
+  min-width: 210px;
+  max-width: 600px;
+}
+
+
+
+
+@media screen and (max-width: 1079px) {
+  .about-author__text{
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+@media screen and (max-width: 539px) {
+  .about-author__text{
+    margin-top: 24px;
+  }
+}

@@ -1,0 +1,25 @@
+@import url(../../vendor/normalize.css);
+@import url(../../vendor/fonts.css);
+@import url(../preloader/preloader.css);
+@import url(../search-preloader/search-preloader.css);
+@import url(../title/title.css);
+@import url(../button/button.css);
+@import url(../text/text.css);
+@import url(../two-lines/two-lines.css);
+@import url(../link/link.css);
+@import url(../header/header.css);
+@import url(../header/_menu-mobile-opened/header_menu-mobile-opened.css);
+@import url(../search/search.css);
+@import url(../search-result/search-result.css);
+@import url(../news-card/news-card.css);
+@import url(../footer/footer.css);
+
+
+.page{
+  font-family: 'Inter', 'Roboto Slab', 'Sourcesanspro', 'Roboto', Arial, Helvetica, sans-serif;
+  min-width: 320px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}

@@ -1,0 +1,31 @@
+.search__search-field{
+  position: relative;
+
+  background: #FFFFFF;
+  font-family: 'Roboto', sans-serif, Arial, Helvetica;
+
+  border: 1px solid #D1D2D6;
+  box-sizing: border-box;
+  /* backdrop-filter: blur(8px); */
+  /* -webkit-backdrop-filter: blur(8px); */
+
+  border-radius: 100px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 608px;
+
+  width: 100%;
+  margin-bottom: 80px;
+
+  max-height: 64px;
+
+}
+
+@media screen and (max-width: 600px){
+  .search__search-field{
+    display: block;
+
+  }
+}

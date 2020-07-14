@@ -1,0 +1,16 @@
+@import url(./_blue/news-card__icon-svg_blue.css);
+@import url(./_black/news-card__icon-svg_black.css);
+@import url(./_black-articles/news-card__icon-svg_black-articles.css);
+
+.news-card__icon{
+  border: none;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background-color: white;
+  border-radius: 8px;
+  padding: 6px;
+  outline: none;
+  text-decoration: none;
+  cursor: url(../../../images/lapka.png), pointer;
+}

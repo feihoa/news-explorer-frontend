@@ -1,0 +1,16 @@
+.articles-info__title{
+  width: calc(100% - 144px);
+  margin: 0;
+  padding: 0;
+  color:#1A1B22;
+  font-size: 40px;
+  line-height: 46px;
+  align-self: auto;
+
+}
+@media screen and (max-width: 800px){
+  .articles-info__title{
+    font-size: 30px;
+    line-height: 34px;
+  }
+}

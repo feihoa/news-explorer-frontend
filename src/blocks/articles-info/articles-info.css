@@ -1,0 +1,27 @@
+@import url(./__text/articles-info__text.css);
+@import url(./__title/articles-info__title.css);
+@import url(./__text-key-words/articles-info__text-key-words.css);
+
+.articles-info{
+  display: flex;
+  align-self: start;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 700px;
+
+
+}
+
+
+
+@media screen and (max-width: 600px){
+  .articles-info{
+    display: block;
+    width: 95%;
+    margin: auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
+  }
+}
+

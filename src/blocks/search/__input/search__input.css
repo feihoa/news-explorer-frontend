@@ -1,0 +1,29 @@
+.search__input{
+  font-size: 16px;
+  line-height: 22px;
+
+  color: #B6BCBF;
+
+  display: inline-block;
+  margin: 0px 40px 0px 24px;
+
+  max-width: 376px;
+  height: 56px;
+  border: 0px;
+  width: 70%;
+  margin-right: 0;
+  width: 300%;
+}
+
+.search__input:focus {
+  outline: .01px solid rgb(174, 173, 171);
+  border: none;
+  color: black;
+}
+
+@media screen and (max-width: 600px){
+  .search__input{
+    width: 80%;
+    margin-right: 0;
+  }
+}

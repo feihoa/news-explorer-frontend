@@ -1,0 +1,22 @@
+.header__links{
+
+width: calc(100% - 144px);
+justify-self: center;
+display: flex;
+margin: 0px auto 0px auto;
+justify-content: space-between;
+}
+
+@media screen and (max-width: 750px) and (min-width: 601px){
+  .header__links{
+    width: initial;
+
+  }
+}
+
+@media screen and (max-width: 600px){
+  .header__links{
+    width: calc(100% - 28px);
+
+  }
+}

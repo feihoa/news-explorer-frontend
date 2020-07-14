@@ -1,0 +1,9 @@
+@import url(./_server/error_server.css);
+.error{
+  font-family: 'Inter', sans-serif, Arial, Helvetica;
+  font-size: 12px;
+  line-height: 15px;
+
+  color: #FF0000;
+
+}

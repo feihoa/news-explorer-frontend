@@ -1,0 +1,27 @@
+.header__link-logout{
+
+  padding: 12px 12px 12px 19px;
+  margin: 0;
+  box-shadow: none;
+
+}
+
+@media screen and (max-width: 600px) {
+  .header__link-logout{
+    width: calc(100vw - 20px);
+    margin-bottom: 24px;
+
+    justify-content: center;
+
+    display: flex;
+  }
+}
+
+@media screen and (max-width: 600px){
+  #logout-svg{
+    fill:white
+
+
+      }
+
+  }

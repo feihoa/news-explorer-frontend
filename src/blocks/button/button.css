@@ -1,0 +1,28 @@
+@import url(./_circled/button_circled.css);
+@import url(./_circled_black/button_circled_black.css);
+
+.button{
+  cursor: url('../../images/lapka.png'), pointer;
+  list-style: none;
+  text-decoration: none;
+  background-color: transparent;
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  outline: none;
+  box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);
+  border-radius: 100px;
+
+}
+.button:hover{
+  opacity: .85;
+}
+
+button:disabled, button:disabled:hover, button:disabled:active{
+  background: #E6E8EB;
+  color: #B6BCBF;
+  box-shadow: none;
+  border:none;
+
+}

@@ -1,0 +1,42 @@
+@import url(./__copyright/footer__copyright.css);
+@import url(./__menu/footer__menu.css);
+@import url(./__menu-links/footer__menu-links.css);
+@import url(./__link-main/footer__link-main.css);
+@import url(./__link-praktikum/footer__link-praktikum.css);
+@import url(./__social-links/footer__social-links.css);
+@import url(./__link-github/footer__link-github.css);
+@import url(./__link-fb/footer__link-fb.css);
+
+.footer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 94%;
+
+}
+@media screen and (max-width: 700px) and (min-width: 661px){
+  .footer{
+    width: 95%;
+
+}
+}
+@media screen and (max-width: 660px) and (min-width: 371px){
+  .footer{
+    margin-top: 40px;
+    flex-wrap: wrap-reverse;
+    width: 90%;
+
+
+}
+}
+@media screen and (max-width: 370px) {
+  .footer{
+    max-width:1440px;
+    min-width: 300px;
+    width: 97%;
+    margin-top: 40px;
+    flex-wrap: wrap-reverse;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+}

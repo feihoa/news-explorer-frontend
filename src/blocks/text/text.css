@@ -1,0 +1,14 @@
+@import url(./_black/text_black.css);
+@import url(./_white/text-white.css);
+
+.text{
+  font-size: 18px;
+  line-height: 133%;
+
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+
+
+
+}
+
+
