@@ -23,7 +23,7 @@
     @media screen and (max-width: 600px){
       .header__menu{
         width: 100%;
-        margin-left: -15px;
+        margin-left: -10px;
         position: relative;
 
       }

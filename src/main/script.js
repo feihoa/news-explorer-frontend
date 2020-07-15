@@ -1,7 +1,7 @@
 import "./index.css";
-import "./../../js/index.js";
+import "../js/index.js";
 
-import {MenuChange} from "./../../js/index.js";
+import {MenuChange} from "../js/index.js";
 
 document.querySelector('#two-lines').addEventListener("click", function () {
   document.querySelector('#two-lines').classList.toggle("change");
