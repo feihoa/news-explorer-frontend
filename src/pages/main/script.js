@@ -1,15 +1,7 @@
 import "./index.css";
-import "./index.js";
+import "./../../js/index.js";
 
-
-export function MenuChange(elemChange, elemClass) {
-  if (elemChange.classList.contains(elemClass)){
-    elemChange.classList.remove(elemClass);
-  } else {
-    elemChange.classList.add(elemClass);
-  }
-}
-
+import {MenuChange} from "./../../js/index.js";
 
 document.querySelector('#two-lines').addEventListener("click", function () {
   document.querySelector('#two-lines').classList.toggle("change");
