@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>NewsExplorer</title>
-  <link rel="icon" href="<%=require('./images/favicon.ico').default%>">
+  <link rel="icon" href="<%=require('../../images/favicon.ico').default%>">
 </head>
 <body>
   <div class="page page_main">
@@ -34,7 +34,7 @@
         <h1 class="title search__title ">Что в мире творится?</h1>
         <p class="text text_white search__description">Введите в поиске любую тему и узнайте, насколько популярной она была в новостях за прошедшую неделю.</p>
         <form class="search__search-field">
-          <input id="search-input" autofocus type="search" name="keyword" required minlength="2" maxlength="30" class="search__input" placeholder="Введите тему новости">
+          <input id="search-input" type="text" name="keyword" required minlength="2" maxlength="30" class="search__input" placeholder="Введите тему новости">
           <!-- <span id='search-error' class="error"></span> -->
           <button class="button search__button">Искать</button>
         </form>
@@ -121,7 +121,7 @@
 
         <div  class="popup popup__login popup_hidden" >
           <div class="popup__content">
-            <img src="<%=require('./images/close.svg').default%>" alt="close" class="popup__close">
+            <img src="<%=require('../../images/close.svg').default%>" alt="close" class="popup__close">
             <form class="popup__form">
               <fieldset class="popup__fieldset">
                 <legend class="title popup__title">Вход</legend>
@@ -146,7 +146,7 @@
 
         <div  class="popup popup__registration popup_hidden" >
           <div class="popup__content">
-            <img src="<%=require('./images/close.svg').default%>" alt="close" class="popup__close">
+            <img src="<%=require('../../images/close.svg').default%>" alt="close" class="popup__close">
             <form class="popup__form">
                 <fieldset class="popup__fieldset">
                   <legend class="title popup__title">Регистрация</legend>
@@ -176,7 +176,7 @@
 
         <div  class="popup popup__successful-registration popup_hidden" >
           <div class="popup__content popup-successful-registration__content">
-            <img src="<%=require('./images/close.svg').default%>" alt="close" class="popup__close">
+            <img src="<%=require('../../images/close.svg').default%>" alt="close" class="popup__close">
             <h3 class="title popup__title">Пользователь успешно зарегистрирован!</h3>
              <button  type="button" class="button popup__button popup__after-form-button ">Выполнить вход</button>
           </div>
@@ -184,11 +184,11 @@
         <!-- popup -->
     <section class="about-author">
       <picture>
-        <source media="(min-width:769px)" srcset="<%=require('./images/imageAuthor.jpg').default%>">
-        <source media="(min-width:465px)" srcset="<%=require('./images/imageAuthor_232.jpg').default%>">
-        <source media="(max-width:465px)" srcset="<%=require('./images/imageAuthor_272.jpg').default%>">
-        <source media="(max-width:321px)" srcset="<%=require('./images/imageAuthor_200.jpg').default%>">
-        <img class="about-author__img" style="width:auto;" alt="photo" src="<%=require('./images/imageAuthor.jpg').default%>">
+        <source media="(min-width:769px)" srcset="<%=require('../../images/imageAuthor.jpg').default%>">
+        <source media="(min-width:465px)" srcset="<%=require('../../images/imageAuthor_232.jpg').default%>">
+        <source media="(max-width:465px)" srcset="<%=require('../../images/imageAuthor_272.jpg').default%>">
+        <source media="(max-width:321px)" srcset="<%=require('../../images/imageAuthor_200.jpg').default%>">
+        <img class="about-author__img" style="width:auto;" alt="photo" src="<%=require('../../images/imageAuthor.jpg').default%>">
       </picture>
 
       <div class="about-author__text">
