@@ -16,8 +16,11 @@
 }
 
 .search__input:focus {
-  outline: .01px solid rgb(174, 173, 171);
-  border: none;
+  outline: none;
+  outline-offset: 2px;
+
+ border: none;
+
   color: black;
 }
 
@@ -27,3 +30,4 @@
     margin-right: 0;
   }
 }
+

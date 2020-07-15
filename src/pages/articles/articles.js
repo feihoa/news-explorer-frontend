@@ -1,6 +1,6 @@
 import "./articles.css";
-import "./../../js/index.js";
-import {MenuChange} from "./../../js/index.js";
+import "../../index.js";
+import {MenuChange} from "../../index.js";
 
 (function () {
 
