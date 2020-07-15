@@ -16,7 +16,7 @@
 }
 
 .search__input:focus {
-  outline: .01px solid rgb(174, 173, 171);
+  outline: none;
   border: none;
   color: black;
 }
