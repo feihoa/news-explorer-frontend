@@ -1,6 +1,7 @@
 import "./articles.css";
 import "./../../js/index.js";
 import {MenuChange} from "./../../js/index.js";
+import {Header} from "../../js/components/Header.js";
 
 (function () {
 
@@ -10,7 +11,7 @@ document.querySelector('#two-lines').addEventListener("click", function () {
   if (window.screen.width <= 600) {
   MenuChange(document.querySelector('#header'), 'header_menu-mobile-opened');
   MenuChange(document.querySelector('#logo'), 'logo_black');
-  MenuChange(document.querySelector('#headerMenuLinks'), 'header__menu-links-hidden');
+  MenuChange(document.querySelector('#menu-links'), 'header__menu-links-hidden');
   MenuChange(document.querySelector('#mainMenuLink'), 'text_white');
   MenuChange(document.querySelector('#logoutMenuButton'), 'button_circled_black');
   MenuChange(document.querySelector('#logoutMenuButton'), 'text_black');

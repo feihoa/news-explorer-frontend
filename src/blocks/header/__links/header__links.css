@@ -9,7 +9,7 @@ justify-content: space-between;
 
 @media screen and (max-width: 750px) and (min-width: 601px){
   .header__links{
-    width: initial;
+    width: calc(100% - 32px);
 
   }
 }

@@ -2,17 +2,107 @@ import "./index.css";
 import "./../../js/index.js";
 
 import {MenuChange} from "./../../js/index.js";
+import {Popup} from "../../js/components/Popup";
+import {Form} from "../../js/components/Form";
+
+const popup = new Popup(document.querySelector('#popup'));
+const form = new Form(event);
+import {NewsApi} from "../../js/api/NewsApi.js";
+// import {MainApi} from "../../js/api/MainApi.js";
+
+import {NewsCard} from "../../js//components/NewsCard.js";
+import {NewsCardList} from "../../js/components/NewsCardList.js";
+
+
+
 
 document.querySelector('#two-lines').addEventListener("click", function () {
   document.querySelector('#two-lines').classList.toggle("change");
   MenuChange(document.querySelector('#header'), 'header_menu-mobile-opened');
-  MenuChange(document.querySelector('#headerMenuLinks'), 'header__menu-links-hidden');
+  MenuChange(document.querySelector('#menu-links'), 'header__menu-links-hidden');
 
 });
 
-// import {Api} from "./js/Api.js";
-// import {Card} from "./js/Card.js";
-// import {CardList} from "./js/CardList.js";
+function registration(){
+document.querySelector('#registration').addEventListener("click", function () {
+  popup.close();
+  popup.clearContent();
+  popup.setContent('registration');
+  popup.open();
+  form.listeners();
+  closePopup()
+  popupAuth();
+
+
+});
+}
+function auth(){
+  popup.close();
+  popup.clearContent();
+  popup.setContent('auth');
+  popup.open();
+  form.listeners();
+  registration()
+  closePopup()
+}
+document.querySelector('#link-auth').addEventListener("click", function () {
+  auth();
+});
+
+function popupAuth(){
+  document.querySelector('#log-in').addEventListener("click", function () {
+    auth();
+  });
+}
+
+function closePopup(){
+document.querySelector('#close-popup').addEventListener("click", function () {
+  popup.close();
+  popup.clearContent();
+
+});
+
+
+document.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  if (document.querySelector('#popup').contains(event.target) && (document.querySelector('#popup__content') === null || !document.querySelector('#popup__content').contains(event.target)) ){
+
+  popup.close();
+  popup.clearContent();
+  }
+
+});
+document.addEventListener('keyup', function (e) {
+  if(e.keyCode === 27){
+    popup.close();
+    popup.clearContent();
+  }
+});
+}
+function success(){
+  popup.close();
+  popup.clearContent();
+  popup.setContent('success');
+  popup.open();
+  popupAuth();
+  closePopup();
+  }
+  const newsApi = new NewsApi({
+    baseUrl: NODE_ENV === 'development' ? 'http://praktikum.tk/news/v2/top-headlines?country=us&apiKey=5dc7761c8286400eb78ab29e37682fec' : 'https://praktikum.tk/news/v2/top-headlines?country=us&apiKey=5dc7761c8286400eb78ab29e37682fec',
+    // headers: {
+    //   authorization: '548c5797-a590-40d0-8f9e-48d758ca9ae7',
+    //   'Content-Type': 'application/json'
+    // }
+  });
+
+newsApi.getNews()
+.then((data) => {
+  cardList.render(data)
+  console.log(data)
+});
+
+
 // import {EditPopup} from "./js/EditPopup.js";
 // import {FormValidator} from "./js/FormValidator.js";
 // import {Loader} from "./js/Loader.js";
@@ -23,13 +113,7 @@ document.querySelector('#two-lines').addEventListener("click", function () {
 
 // export const mainFunc = (function ()  {
 
-//   const api = new Api({
-//     baseUrl: NODE_ENV === 'development' ? 'http://praktikum.tk/cohort9' : 'https://praktikum.tk/cohort9',
-//     headers: {
-//       authorization: '548c5797-a590-40d0-8f9e-48d758ca9ae7',
-//       'Content-Type': 'application/json'
-//     }
-//   });
+
 
 // const card = new Card();
 // const popup = new Popup(document.querySelector('#formCard'));
