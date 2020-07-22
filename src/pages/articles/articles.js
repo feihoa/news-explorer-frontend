@@ -1,25 +1,23 @@
 import "./articles.css";
 import "./../../js/index.js";
-import {MenuChange} from "./../../js/index.js";
 import {Header} from "../../js/components/Header.js";
-
-(function () {
+import {MobileMenu} from "../../js/components/MobileMenu.js";
+const mobileMenu = new MobileMenu();
 
 
 document.querySelector('#two-lines').addEventListener("click", function () {
   document.querySelector('#two-lines').classList.toggle("change");
   if (window.screen.width <= 600) {
-  MenuChange(document.querySelector('#header'), 'header_menu-mobile-opened');
-  MenuChange(document.querySelector('#logo'), 'logo_black');
-  MenuChange(document.querySelector('#menu-links'), 'header__menu-links-hidden');
-  MenuChange(document.querySelector('#mainMenuLink'), 'text_white');
-  MenuChange(document.querySelector('#logoutMenuButton'), 'button_circled_black');
-  MenuChange(document.querySelector('#logoutMenuButton'), 'text_black');
-  MenuChange(document.querySelector('#logoutMenuButton'), 'text_white');
-  MenuChange(document.querySelector('#bar1'), 'two-lines__bar_white');
-  MenuChange(document.querySelector('#bar2'), 'two-lines__bar_white');
+    mobileMenu.toggle(document.querySelector('#header'), 'header_menu-mobile-opened');
+    mobileMenu.toggle(document.querySelector('#logo'), 'logo_black');
+    mobileMenu.toggle(document.querySelector('#menu-links'), 'header__menu-links-hidden');
+    mobileMenu.toggle(document.querySelector('#mainMenuLink'), 'text_white');
+    mobileMenu.toggle(document.querySelector('#logoutMenuButton'), 'button_circled_black');
+    mobileMenu.toggle(document.querySelector('#logoutMenuButton'), 'text_black');
+    mobileMenu.toggle(document.querySelector('#logoutMenuButton'), 'text_white');
+    mobileMenu.toggle(document.querySelector('#bar1'), 'two-lines__bar_white');
+    mobileMenu.toggle(document.querySelector('#bar2'), 'two-lines__bar_white');
   }
 });
 
 
-}());

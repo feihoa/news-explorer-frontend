@@ -26,6 +26,7 @@
 .search__search-field:focus-within{
   border: 1.3px solid rgb(0, 0, 222, .3);
   box-sizing: border-box;
+  max-height: 60px;
 }
 
 

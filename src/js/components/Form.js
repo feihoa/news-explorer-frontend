@@ -72,7 +72,7 @@ export class Form {
     inputArray.forEach(elem => array.push(elem.value));
 
     if( array.every(elem => elem.length > 1 && elem.length < 31) && this._isEmail(array[0]) && array[1].length >= 8){
-    button.removeAttribute('disabled')
+      button.removeAttribute('disabled')
 
 
     } else {

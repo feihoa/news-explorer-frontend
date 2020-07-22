@@ -24,7 +24,8 @@
   margin-right: 16px;
   width: 100%;
 
-
+  text-decoration:none;
+  color:black;
 }
 
 .news-card:hover{

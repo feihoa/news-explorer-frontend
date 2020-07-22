@@ -5,9 +5,8 @@ export class NewsCardList {
 
   }
 
-  addCard(cardName, cardDescription, cardImage, isLoggedIn, cardPublishedAt, id, cardSourceName) {
-
-      this.container.insertAdjacentHTML('beforeend', this.newsCard.create(cardName, cardDescription, cardImage, isLoggedIn, cardPublishedAt, id, cardSourceName));
+  addCard(cardName, cardDescription, cardImage, isLoggedIn, cardPublishedAt, id, cardSourceName, newsUrl) {
+      this.container.insertAdjacentHTML('beforeend', this.newsCard.create(cardName, cardDescription, cardImage, isLoggedIn, cardPublishedAt, id, cardSourceName, newsUrl));
   }
   listeners(api) {
       this.container.addEventListener('click', event => {
@@ -15,23 +14,40 @@ export class NewsCardList {
           // this.card.like(event, api);
       });
 
-      this.container.addEventListener('click', event => {
-          this.card.remove(event, api)
-      });
+      // this.container.addEventListener('click', event => {
+      //     this.card.remove(event, api)
+      // });
   }
+  _deleteTags(elem){
+    const re = /<\/?[^<^>]+(>|$)/g;
+    if (elem !== null){
+    return elem  = elem.replace(re, "");
+    }
+  }
+  clearContent(){
+    // if( document.querySelectorAll('#news-card') !== null){
+    //   this.container.removeChild( document.querySelectorAll('news-card') );
+    // }
+    var myNode = document.querySelector("#news-card");
 
+    if(myNode !== null){
+    while (myNode.firstChild) {
+        myNode.removeChild(myNode.firstChild);
+    }  }
+  }
   render(data) {
+    this.clearContent()
       this.data = data;
-      let id ;
-     return  data.forEach(elem => {
-          id = elem._id;
-          // if (elem.owner._id == '981c6a4012de8f86661526e3'){
-          //     canDel = true;
-          // }else{
-          //     canDel = false;
-          // }
+     return  data.articles.forEach(elem => {
+      let isLoggedIn = 'Сохранить';
+      const title = this._deleteTags(elem.title);
+      const description = this._deleteTags(elem.description);
+      const urlToImage = this._deleteTags(elem.urlToImage);
+      const publishedAt = this._deleteTags(elem.publishedAt);
+      const sourceName = this._deleteTags(elem.source.name);
+      const url = this._deleteTags(elem.url);
 
-          this.addCard(elem.name, elem.description, elem.image, isLoggedIn, elem.publishedAt, elem.id, elem.sourceName);
+          this.addCard(title, description, urlToImage, isLoggedIn, publishedAt, elem.id, sourceName, url);
       })
   }
 }

@@ -33,67 +33,17 @@
       <section class="search">
         <h1 class="title search__title ">Что в мире творится?</h1>
         <p class="text text_white search__description">Введите в поиске любую тему и узнайте, насколько популярной она была в новостях за прошедшую неделю.</p>
-        <form class="search__search-field">
+        <form name="search" class="search__search-field">
           <input id="search-input" type="text" name="keyword" required minlength="2" maxlength="30" class="search__input" placeholder="Введите тему новости">
           <!-- <span id='search-error' class="error"></span> -->
-          <button class="button search__button">Искать</button>
+          <button id="find-news-button" type="submit" class="button search__button">Искать</button>
         </form>
       </section>
     </section>
     <section class="search-result search-result_hidden1">
       <h2 class="title search-result__title">Результаты поиска</h2>
-      <div class="search-result__card-zone">
-            <!-- Пример карточки -->
-      <div class="news-card">
-        <div class="news-card__image">
-          <button class="button news-card__icon news-card__save-icon news-card__icon-svg_blue">
-            <svg class="news-card__icon-svg news-card__icon-svg_blue" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path class="card-svg" d="M11.3822 15.7137L6 19.9425V4L18 4V19.9425L12.6178 15.7137L12 15.2283L11.3822 15.7137Z"     stroke="#B6BCBF" stroke-width="2"/>
-            </svg>
-          </button>
-          <span class="text news-card__pop-up-line news-card__pop-up-line-hidden"></span>
-        </div>
-        <div class="news-card__content">
-          <p class="news-card__date">2 августа, 2019</p>
-          <h3 class="title news-card__name">Национальное достояние – парки</h3>
-          <p class="text text_black news-card__text">В 2016 году Америка отмечала важный юбилей: сто лет назад здесь начала складываться система национальных парков – охраняемых территорий, где и сегодня каждый может приобщиться к природе.</p>
-        </div>
-        <p class="title news-card__source">Лента.ру</p>
+      <div id="card-zone" class="search-result__card-zone">
       </div>
-      <div class="news-card">
-        <div class="news-card__image">
-          <button class="button news-card__icon news-card__save-icon news-card__icon-svg_black">
-            <svg class="news-card__icon-svg" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path class="card-svg" d="M11.3822 15.7137L6 19.9425V4L18 4V19.9425L12.6178 15.7137L12 15.2283L11.3822 15.7137Z" stroke="#B6BCBF" stroke-width="2"/>
-            </svg>
-          </button>
-          <span class="text news-card__pop-up-line">Войдите, чтобы сохранять статьи</span>
-        </div>
-        <div class="news-card__content">
-          <p class="news-card__date">2 августа, 2019</p>
-          <h3 class="title news-card__name">Национальное достояние – парки</h3>
-          <p class="text text_black news-card__text">В 2016 году Америка отмечала важный юбилей: сто лет назад здесь начала складываться система национальных парков – охраняемых территорий, где и сегодня каждый может приобщиться к природе.</p>
-        </div>
-        <p class="title news-card__source">Лента.ру</p>
-      </div>
-      <div class="news-card">
-        <div class="news-card__image">
-          <button class="button news-card__save-icon news-card__icon news-card__icon-svg_black">
-            <svg class="news-card__icon-svg" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path class="card-svg" d="M11.3822 15.7137L6 19.9425V4L18 4V19.9425L12.6178 15.7137L12 15.2283L11.3822 15.7137Z" stroke="#B6BCBF" stroke-width="2"/>
-            </svg>
-          </button>
-          <span class="text news-card__pop-up-line">Войдите, чтобы сохранять статьи</span>
-        </div>
-        <div class="news-card__content">
-          <p class="news-card__date">2 августа, 2019</p>
-          <h3 class="title news-card__name">Конкурентоспособность в экономике</h3>
-          <p class="text text_black news-card__text">В 2016 году Америка отмечала важный юбилей: сто лет назад здесь начала складываться система национальных парков – охраняемых территорий, где и сегодня каждый может приобщиться к природе.</p>
-        </div>
-        <p class="title news-card__source">Лента.ру</p>
-      </div>
-            <!-- Пример карточки -->
-       </div>
     <button class="button text text_black news-card__show-more-button">Показать еще</button>
     </section>
 
