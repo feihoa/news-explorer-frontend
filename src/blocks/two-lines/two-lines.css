@@ -1,6 +1,6 @@
 @import url(./__bar/two-lines__bar.css);
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 670px){
 
   .two-lines{
     display: inline-block;

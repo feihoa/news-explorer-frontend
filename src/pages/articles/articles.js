@@ -3,6 +3,8 @@ import "./../../js/index.js";
 import {Header} from "../../js/components/Header.js";
 import {MobileMenu} from "../../js/components/MobileMenu.js";
 const mobileMenu = new MobileMenu();
+import {MainApi} from "../../js/api/MainApi.js";
+
 
 
 document.querySelector('#two-lines').addEventListener("click", function () {
@@ -21,3 +23,14 @@ document.querySelector('#two-lines').addEventListener("click", function () {
 });
 
 
+const mainApi = new MainApi({
+  baseUrl: NODE_ENV === 'development' ? `http://api.news-explorer-pr.tk` : `https://api.news-explorer-pr.tk`,
+  headers: {
+    'Content-Type': 'application/json'
+  }
+ });
+
+ mainApi.getArticles()
+.then((data) => {
+  cardList.render(data)
+});

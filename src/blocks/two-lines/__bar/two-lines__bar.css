@@ -3,7 +3,7 @@
 @import url(./_black/two-lines__bar_black.css);
 @import url(./_white/two-lines__bar_white.css);
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 670px){
 
 .two-lines__bar{
   width: 16px;

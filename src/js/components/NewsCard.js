@@ -42,18 +42,20 @@ export class NewsCard {
   //   }
   // }
 
-  create(cardNameValue, cardDescriptionValue, cardImageValue, isLoggedIn, cardPublishedAtValue, id, cardSourceNameValue, newsUrl) {
+  create(cardNameValue, cardDescriptionValue, cardImageValue, cardPublishedAtValue, cardSourceNameValue, newsUrl) {
+    if(cardImageValue){
+    }else{
+      cardImageValue = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
+    }
 
-    this.id = id;
-
-  return   ` <a class="news-card" id=${id}" target="_blank" href="${newsUrl}">
+  return   ` <a class="news-card" target="_blank" href="${newsUrl}">
   <div class="news-card__image" style="background-image: url(${cardImageValue})">
     <button class="button news-card__save-icon news-card__icon news-card__icon-svg_black">
       <svg class="news-card__icon-svg" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path class="card-svg" d="M11.3822 15.7137L6 19.9425V4L18 4V19.9425L12.6178 15.7137L12 15.2283L11.3822 15.7137Z" stroke="#B6BCBF" stroke-width="2"/>
       </svg>
     </button>
-    <span class="text news-card__pop-up-line">${isLoggedIn}</span>
+    <span class="text news-card__pop-up-line"></span>
   </div>
   <div class="news-card__content">
     <p class="news-card__date" >${cardPublishedAtValue}</p>

@@ -5,10 +5,10 @@ import {Header} from './components/Header.js';
 
 const header = new Header();
 
-header.render({
-  isLoggedIn: false,
-  name: "Отобразись"
-})
+// header.render({
+//   isLoggedIn: true,
+//   name: "Отобразись"
+// })
 
 
 

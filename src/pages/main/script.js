@@ -4,62 +4,83 @@ import "./../../js/index.js";
 import {MobileMenu} from "../../js/components/MobileMenu.js";
 import {Form} from "../../js/components/Form";
 import {NewsApi} from "../../js/api/NewsApi.js";
+import {MainApi} from "../../js/api/MainApi.js";
 import {NewsCardList} from "../../js/components/NewsCardList";
 import {NewsCard} from "../../js/components/NewsCard.js";
 import {Popup} from "../../js/components/Popup";
 import {weekAgo} from "../../js/utils/weekAgo.js";
 import {dateFormatChange} from "../../js/utils/dateFormatChange.js";
 import {listToMatrix} from "../../js/utils/listToMatrix.js";
+import {Header} from '../../js/components/Header.js';
 
-
+const header = new Header();
 const mobileMenu = new MobileMenu();
 const popup = new Popup(document.querySelector('#popup'));
 const form = new Form(event);
 const newsCard = new NewsCard();
 const newsCardList = new NewsCardList(document.querySelector('#card-zone'), newsCard);
 let keyWord;
-let date = '2020-07-15T20:12:28.507Z';
 let currentDate = new Date();
-
+let cardMatrixLine = 0;
 let dateAgo = weekAgo(currentDate);
-date = dateFormatChange(date)
-console.log(date)
 
-document.forms.search.addEventListener("submit", function (event) {
+const mainApi = new MainApi({
+  baseUrl: `https://api.news-explorer-pr.tk`,
+  headers: {
+    'Content-Type': 'application/json',
+  }
+ });
+ console.log(document.cookie)
+//  if(document.cookie){
+//   header.render({
+//     isLoggedIn: true,
+//     name: 'data.name',
+//   })
+//  }
+//  document.querySelector('#button-logout').addEventListener('click', function(){
+//   document.cookie = '';
+
+//  })
+
+  document.forms.search.addEventListener("submit", function (event) {
   event.preventDefault();
-
- keyWord =  document.querySelector('#search-input').value;
+  keyWord =  document.querySelector('#search-input').value;
  document.querySelector('#search-input').value = '';
-  let url = 'everything?' +
+
+const URL = 'everything?' +
   `q=${keyWord}&` +
-  `from=${dateAgo}&` +
+  `from=${dateAgo.replace(/T.*Z/, "")}&` +
   'language=ru&' +
   'sortBy=popularity&' +
   'pageSize=100&' +
   'apiKey=5dc7761c8286400eb78ab29e37682fec';
 
-
  const newsApi = new NewsApi({
-  baseUrl: NODE_ENV === 'development' ? `http://praktikum.tk/news/v2/` + url: `https://praktikum.tk/news/v2/` + url,
-  headers: {
-    // authorization: '548c5797-a590-40d0-8f9e-48d758ca9ae7',
-    'Content-Type': 'application/json'
-  }
+  baseUrl: NODE_ENV === 'development' ? `http://praktikum.tk/news/v2/` + URL: `https://praktikum.tk/news/v2/` + URL,
+  headers: new Headers({
+    'Content-Type': 'application/json',
+  }),
+ });
+console.log(`http://praktikum.tk/news/v2/` + URL)
 
-});
 newsApi.getNews()
 .then((data) => {
-   console.log(data)
-
-  newsCardList.render(data)
+  document.querySelector('#card-zone').textContent = '';
+  cardMatrixLine = 0;
+  return data
+})
+.then((data) => {
+ return  listToMatrix(data.articles, 3);
+})
+ .then((matrix) => {
+  showCards(matrix)
+ })
 });
-newsCardList.listeners(newsApi);
 
-});
-
-
-
-
+  const showCards = (cards) => {
+   newsCardList.render(cards[cardMatrixLine++], dateFormatChange);
+  document.querySelector('#show-more-button').onclick = function(){showCards(cards)};
+}
 
 document.querySelector('#two-lines').addEventListener("click", function () {
   document.querySelector('#two-lines').classList.toggle("change");
@@ -75,21 +96,54 @@ document.querySelector('#registration').addEventListener("click", function () {
   popup.setContent('registration');
   popup.open();
   form.listeners();
+  document.querySelector('#button-submit').addEventListener('click', function(e){
+    console.log('data');
+    e.preventDefault();
+    mainApi.signup(document.querySelector('#input-email').value, document.querySelector('#input-password').value, document.querySelector('#input-name').value)
+   .then((data) => {
+     console.log(data);
+     if(typeof(data) === 'object' ){
+     success();
+     }else{
+       form.setServerError(document.querySelector('.error_bottom'))
+     }
+  })
+
+  })
   closePopup()
   popupAuth();
-
-
 });
 }
+
 function auth(){
   popup.close();
   popup.clearContent();
   popup.setContent('auth');
   popup.open();
   form.listeners();
-  registration()
+  document.querySelector('#button-submit').addEventListener('click', function(e){
+    e.preventDefault();
+    mainApi.signin(document.querySelector('#input-email').value, document.querySelector('#input-password').value)
+   .then((data) => {console.log(data.name);
+
+    if(typeof(data) === 'object' ){    console.log(document.cookie)
+
+       header.render({
+      isLoggedIn: true,
+      name: data.name,
+    })
+
+    popup.close();
+      }else{
+        form.setServerError(document.querySelector('.error_bottom'))
+      }
+  })
+
+  })
+  registration();
   closePopup()
 }
+
 document.querySelector('#link-auth').addEventListener("click", function () {
   auth();
 });

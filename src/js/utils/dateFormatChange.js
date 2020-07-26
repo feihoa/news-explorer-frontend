@@ -1,14 +1,8 @@
 export function dateFormatChange(d){
+  d = d.replace(/T.*Z/, "").replace(/-0/, '-').split('-');
 
-  let data = d.setTime(Date.parse(d));
-  let a = new Date(data * 1000);
-  let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  let year = a.getYear();
-  let month = months[a.getMonth()];
-  let date = a.getDate();
-  let hour = a.getHours();
-  let min = a.getMinutes();
-  let sec = a.getSeconds();
-  let time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
-  return time;
+  const months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+
+  let date = `${d[2]} ${months[d[1]]}, ${d[0]}`
+  return date;
 }

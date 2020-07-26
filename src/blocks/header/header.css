@@ -6,6 +6,7 @@
 @import url("./__link-saved/header__link-saved.css");
 @import url("./__link-logout/header__link-logout.css");
 @import url("./__menu-links_hidden/header__menu-links-hidden.css");
+@import url("./__link-item_hidden/header__link-item_hidden.css");
 
 .header{
 

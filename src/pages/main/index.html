@@ -21,8 +21,9 @@
           <ul id="menu-links" class="header__menu-links header__menu-links-hidden">
             <li id="link-main" class="header__menu-link"><a href="./index.html" class="link link_active link_active_white text text_white header__link-main">Главная</a></li>
             <li id="link-auth" name="auth" class="header__menu-button"><button class="button button_circled text text_white header__link-auth">Авторизироваться</button></li>
-            <li id="button-saved" class="header__menu-link"><a href="./articles.html" class="link text text_white header__link-saved">Сохранённые статьи</a></li>
-            <li id="button-logout" class="header__menu-button"><button class="button button_circled text text_white header__link-logout"><span class = "userName" id="user-name">Грета</span>
+            <li id="button-saved" class="header__menu-link header__link-item_hidden"><a href="./articles.html" class="link text text_white header__link-saved ">Сохранённые статьи</a></li>
+            <li id="button-logout" class="header__menu-button header__link-item_hidden"><button class="button button_circled text text_white header__link-logout "
+              ><span class = "userName" id="user-name">Грета</span>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M10 6H6v12h4v2H6a2 2 0 01-2-2V6a2 2 0 012-2h4v2zm7.586 7l-4.293 4.134 1.414 1.362 6.707-6.459-6.707-6.459-1.414 1.362 4.293 4.134H8V13h9.586z" fill="#FFF"/></svg>
             </button></li>
           </ul>
@@ -44,7 +45,7 @@
       <h2 class="title search-result__title">Результаты поиска</h2>
       <div id="card-zone" class="search-result__card-zone">
       </div>
-    <button class="button text text_black news-card__show-more-button">Показать еще</button>
+    <button id="show-more-button"  class="button text text_black news-card__show-more-button">Показать еще</button>
     </section>
 
     <!-- Preloader -->

@@ -35,8 +35,13 @@ export class Form {
     }
   }
 
-  setServerError(api){
+  setServerError(err){
+    if(data == 409){
+      err.textContent = 'Ошибка: ' + 'такой пользователь уже есть'
+     }else{
+      err.textContent = 'Ошибка: ' + 'неправильный формат данных'
 
+     }
   }
 
   _validateInputElement(element){

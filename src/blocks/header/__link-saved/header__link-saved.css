@@ -8,8 +8,7 @@
 
 }
 
-
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 670px) {
   .header__link-saved{
     margin-bottom: 10px;
     font-size: 18px;

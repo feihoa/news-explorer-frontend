@@ -8,7 +8,7 @@
 }
 
 
-@media screen and (max-width: 600px) and (min-width: 320px){
+@media screen and (max-width: 670px) and (min-width: 320px){
   .header__menu-links{
 
     padding: 0 16px 0 16px;
