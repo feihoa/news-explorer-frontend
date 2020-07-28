@@ -19,6 +19,7 @@ const popup = new Popup(document.querySelector('#popup'));
 const form = new Form(event);
 const newsCard = new NewsCard();
 const newsCardList = new NewsCardList(document.querySelector('#card-zone'), newsCard);
+
 let keyWord;
 let currentDate = new Date();
 let cardMatrixLine = 0;
@@ -30,17 +31,21 @@ const mainApi = new MainApi({
     'Content-Type': 'application/json',
   }
  });
- console.log(document.cookie)
-//  if(document.cookie){
-//   header.render({
-//     isLoggedIn: true,
-//     name: 'data.name',
-//   })
-//  }
-//  document.querySelector('#button-logout').addEventListener('click', function(){
-//   document.cookie = '';
 
-//  })
+ mainApi.createArticle()
+ .then((data) => {
+ console.log(data.data)
+ newsCardList.render(data.data, dateFormatChange)
+ newsCardList.listeners(data.data, saveCard);
+});
+ function saveCard(url){
+  mainApi.createArticle(url)
+  .then(data =>{
+    console.log('data')
+
+
+  })
+}
 
   document.forms.search.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -74,11 +79,13 @@ newsApi.getNews()
 })
  .then((matrix) => {
   showCards(matrix)
+  newsCardList.listeners(matrix)
  })
 });
 
   const showCards = (cards) => {
    newsCardList.render(cards[cardMatrixLine++], dateFormatChange);
+
   document.querySelector('#show-more-button').onclick = function(){showCards(cards)};
 }
 
@@ -96,9 +103,8 @@ document.querySelector('#registration').addEventListener("click", function () {
   popup.setContent('registration');
   popup.open();
   form.listeners();
-  document.querySelector('#button-submit').addEventListener('click', function(e){
+  document.querySelector('#button-submit').addEventListener('click', function(){
     console.log('data');
-    e.preventDefault();
     mainApi.signup(document.querySelector('#input-email').value, document.querySelector('#input-password').value, document.querySelector('#input-name').value)
    .then((data) => {
      console.log(data);
@@ -124,13 +130,13 @@ function auth(){
   document.querySelector('#button-submit').addEventListener('click', function(e){
     e.preventDefault();
     mainApi.signin(document.querySelector('#input-email').value, document.querySelector('#input-password').value)
-   .then((data) => {console.log(data.name);
+   .then((data) => {console.log(data.data.name);
 
-    if(typeof(data) === 'object' ){    console.log(document.cookie)
+    if(data){    console.log(data)
 
        header.render({
       isLoggedIn: true,
-      name: data.name,
+      name: data.data.name,
     })
 
     popup.close();
@@ -162,8 +168,7 @@ document.querySelector('#close-popup').addEventListener("click", function () {
 });
 
 
-document.addEventListener("click", function (e) {
-  e.preventDefault();
+document.addEventListener("click", function () {
 
   if (document.querySelector('#popup').contains(event.target) && (document.querySelector('#popup__content') === null || !document.querySelector('#popup__content').contains(event.target)) ){
 
@@ -188,7 +193,6 @@ function success(){
   popupAuth();
   closePopup();
   }
-
 
 
 

@@ -5,22 +5,27 @@ export class NewsCardList {
 
   }
 
-  addCard(cardName, cardDescription, cardImage, cardPublishedAt, cardSourceName, newsUrl) {
-      this.container.insertAdjacentHTML('beforeend', this.newsCard.create(cardName, cardDescription, cardImage, cardPublishedAt, cardSourceName, newsUrl));
+  addCard(keyword, cardName, cardDescription, cardImage, cardPublishedAt, cardSourceName, newsUrl) {
+      this.container.insertAdjacentHTML('beforeend', this.newsCard.create(keyword, cardName, cardDescription, cardImage, cardPublishedAt, cardSourceName, newsUrl));
   }
-  listeners(api) {
+  listeners(data, re) {
+    if(window.location.pathname === '/articles.html'){
+
       this.container.addEventListener('click', event => {
 
-          // this.card.like(event, api);
-      });
+        this.newsCard.remove(event, data, re)
+    });
 
-      // this.container.addEventListener('click', event => {
-      //     this.card.remove(event, api)
-      // });
+    }else{
+      this.container.addEventListener('click', event => {
+
+          this.newsCard.save(event, data, re);
+      });
+    }
   }
   _deleteTags(elem){
     const re = /<\/?[^<^>]+(>|$)/g;
-    if (elem !== null){
+    if (elem !== null && elem){
     return elem  = elem.replace(re, "");
     }
   }
@@ -31,14 +36,15 @@ export class NewsCardList {
       if(data){      console.log(data)
 
      return  data.forEach(elem => {
+      const keyword = this._deleteTags(elem.keyword)
       const title = this._deleteTags(elem.title);
-      const description = this._deleteTags(elem.description);
-      const urlToImage = this._deleteTags(elem.urlToImage);
-      const publishedAt = this._deleteTags(elem.publishedAt);
-      const sourceName = this._deleteTags(elem.source.name);
-      const url = this._deleteTags(elem.url);
+      const description = (this._deleteTags(elem.description) || this._deleteTags(elem.text) )
+      const urlToImage = (this._deleteTags(elem.urlToImage) || this._deleteTags(elem.image));
+      const publishedAt = (this._deleteTags(elem.publishedAt) || this._deleteTags(elem.date));
+      const sourceName = (this._deleteTags(elem.source.name) || this._deleteTags(elem.source));
+      const url = (this._deleteTags(elem.url)|| this._deleteTags(elem.link));
 
-          this.addCard(title, description, urlToImage, this.dateFormatChange(publishedAt), sourceName, url);
+          this.addCard(keyword, title, description, urlToImage, this.dateFormatChange(publishedAt), sourceName, url);
       })
     }
   }

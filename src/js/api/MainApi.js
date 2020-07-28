@@ -203,5 +203,32 @@ export class MainApi {
 
   }
 
+  logout(){
+    return  fetch(this.options.baseUrl + '/logout', {
+      method: 'GET',
+      credentials: 'include',
+      withCredentials: true,
+      'Content-Type': 'application/json',
+      headers:
+          this.options.headers,
+  })
+    .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+
+        return Promise.reject(`${res.status} ${res.statusText}`);
+      })
+      .then((data) => {
+        console.log(data);
+
+        return data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+  }
+
 }
 

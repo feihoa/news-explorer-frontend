@@ -13,6 +13,8 @@
 @import url(../search-result/search-result.css);
 @import url(../news-card/news-card.css);
 @import url(../footer/footer.css);
+@import url(../popup/_hidden/popup_hidden.css);
+
 
 
 .page{

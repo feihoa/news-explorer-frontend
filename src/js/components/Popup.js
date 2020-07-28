@@ -65,15 +65,17 @@ export class Popup {
   clearContent(){
     if( document.querySelector('#popup__content') !== null){
       this.elem.removeChild( document.querySelector('#popup__content') );
+
     }
   }
   open() {
 
-    this.elem.classList.remove('popup_hidden');
+    this.elem.style.display = 'flex';
+
 
   }
   close() {
-    this.elem.classList.add('popup_hidden');
+    this.elem.style.display = 'none';
 
   }
 
