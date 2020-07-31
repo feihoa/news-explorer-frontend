@@ -1,4 +1,4 @@
-export function listToMatrix(list, elementsPerSubArray) {
+export default function listToMatrix(list, elementsPerSubArray) {
   console.log(list)
  let matrix = [], i , k ;
   matrix.splice(0, 1000);

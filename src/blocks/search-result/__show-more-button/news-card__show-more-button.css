@@ -20,3 +20,6 @@
   background: #EEEEEE;
   opacity: 0.9;
 }
+.news-card__show-more-button_hidden{
+  display: none;
+}

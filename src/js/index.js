@@ -3,10 +3,13 @@ import {Header} from './components/Header.js';
 
 import {MainApi} from "../js/api/MainApi.js";
 
+import getUserData from '../js/utils/getUserData.js'
+import logout from '../js/utils/logout.js'
+
 
 const header = new Header();
 
-
+let isLogged = true;
 
 const mainApi = new MainApi({
   baseUrl: `https://api.news-explorer-pr.tk`,
@@ -15,30 +18,6 @@ const mainApi = new MainApi({
   }
  });
 
+//  getUserData();
+//  logout();
 
-
- mainApi.getUserData()
- .then((data) => {
-  if(data){
-    header.render({
-  isLoggedIn: true,
-  name: data.data.name
-})
-  }else{
-    console.log(window.location)
-    if(window.location.pathname === '/articles.html'){
-    window.location.replace('../index.html');
-    }
-  }
- })
-
- document.querySelector('#button-logout').addEventListener('click', function(){
-  mainApi.logout()
-  .then((data) =>
-  {
-    header.render({
-      isLoggedIn: false,
-    })
-    window.location.replace('../index.html');
-  })
- })

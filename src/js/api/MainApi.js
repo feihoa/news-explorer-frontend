@@ -30,16 +30,13 @@ export class MainApi {
           return res.json();
         }
 
-            return Promise.reject(` ${res.status}`);
+            return Promise.reject(`${res.status}`);
       })
       .then((data) => {
         console.log(data);
         return data;
       })
-      .catch((err) => {
-        console.log(err);
-        return err;
-      });
+
 
   }
   signin(email, password){
@@ -59,22 +56,14 @@ export class MainApi {
     .then((res) => {
         if (res.ok) {
           console.log(res)
-
           return res.json();
         }
-
-            return Promise.reject(`${res.status} ${res.statusText}`);
+            return Promise.reject(`${res.status}`);
       })
       .then((data) => {
-        console.log(data);
-
-
         return data;
       })
-      .catch((err) => {
-        console.log(err);
-        return err;
-      });
+
 
   }
   getUserData(){
@@ -99,9 +88,7 @@ export class MainApi {
 
         return data;
       })
-      .catch((err) => {
-        console.log(err);
-      });
+
 
   }
   getArticles(){
@@ -125,9 +112,7 @@ export class MainApi {
 
         return data;
       })
-      .catch((err) => {
-        console.log(err);
-      });
+
 
   }
 
@@ -161,16 +146,14 @@ export class MainApi {
             return res.json();
           }
 
-          return Promise.reject(`${res.status} ${res.statusText}`);
+          return Promise.reject(`${res.status}`);
         })
         .then((data) => {
         console.log(data);
 
           return data;
         })
-        .catch((err) => {
-          console.log(err);
-        })
+
 
   };
 
@@ -190,16 +173,14 @@ export class MainApi {
             return res.json();
           }
 
-          return Promise.reject(`${res.status} ${res.statusText}`);
+          return Promise.reject(`${res.status}`);
         })
         .then((data) => {
         console.log(data);
 
           return data;
         })
-        .catch((err) => {
-          console.log(err);
-        });
+
 
   }
 
@@ -217,16 +198,13 @@ export class MainApi {
           return res.json();
         }
 
-        return Promise.reject(`${res.status} ${res.statusText}`);
+        return Promise.reject(`${res.status}`);
       })
       .then((data) => {
         console.log(data);
 
         return data;
       })
-      .catch((err) => {
-        console.log(err);
-      });
 
   }
 

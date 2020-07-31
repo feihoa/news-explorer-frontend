@@ -35,11 +35,12 @@ export class Form {
     }
   }
 
-  setServerError(err){
-    if(data == 409){
-      err.textContent = 'Ошибка: ' + 'такой пользователь уже есть'
+  setServerError(elem, err){
+    console.log(err)
+    if(err == 409){
+      elem.textContent = 'Ошибка: ' + 'такой пользователь уже есть'
      }else{
-      err.textContent = 'Ошибка: ' + 'неправильный формат данных'
+      elem.textContent = 'Ошибка: ' + 'неправильный формат данных'
 
      }
   }
@@ -96,11 +97,12 @@ export class Form {
 
   }
   listeners(){
+    if (document.querySelector('#button-submit')){
     document.querySelector('#button-submit').setAttribute('disabled', true);
 
     document.forms[1].addEventListener("input", event => {
       this.handleValidate(event);
 
-    })
+    })}
   }
 }

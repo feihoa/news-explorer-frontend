@@ -7,10 +7,46 @@
   position: absolute;
   top: 24px;
   right: 24px;
-  background-color: white;
+  background: url(../../../images/bookmark.svg) center no-repeat;
   border-radius: 8px;
-  padding: 6px;
   outline: none;
   text-decoration: none;
   cursor: url(../../../images/lapka.png), pointer;
+  width: 33px;
+  height: 33px;
+  background-color: white;
+
+}
+
+.news-card__icon:hover{
+  background: url(../../../images/bookmark_hover.svg) center no-repeat;
+  background-color: white;
+
+
+}
+.news-card__icon_saved{
+  background: url(../../../images/bookmark_blue.svg) center no-repeat;
+  background-color: white;
+
+
+}
+.news-card__icon_articles{
+  border: none;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  border-radius: 8px;
+  outline: none;
+  text-decoration: none;
+  cursor: url(../../../images/lapka.png), pointer;
+  width: 33px;
+  height: 33px;
+  background: url(../../../images/trash.svg) center no-repeat;
+  background-color: white;
+
+}
+.news-card__icon_articles:hover{
+  background: url(../../../images/trash_hover.svg) center no-repeat;
+  background-color: white;
+
 }

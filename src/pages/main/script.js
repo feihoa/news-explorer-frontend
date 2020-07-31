@@ -8,10 +8,12 @@ import {MainApi} from "../../js/api/MainApi.js";
 import {NewsCardList} from "../../js/components/NewsCardList";
 import {NewsCard} from "../../js/components/NewsCard.js";
 import {Popup} from "../../js/components/Popup";
-import {weekAgo} from "../../js/utils/weekAgo.js";
-import {dateFormatChange} from "../../js/utils/dateFormatChange.js";
-import {listToMatrix} from "../../js/utils/listToMatrix.js";
+import weekAgo from "../../js/utils/weekAgo.js";
+import dateFormatChange from "../../js/utils/dateFormatChange.js";
+import listToMatrix from "../../js/utils/listToMatrix.js";
 import {Header} from '../../js/components/Header.js';
+import getUserData from '../../js/utils/getUserData'
+import logout from '../../js/utils/logout.js'
 
 const header = new Header();
 const mobileMenu = new MobileMenu();
@@ -20,10 +22,12 @@ const form = new Form(event);
 const newsCard = new NewsCard();
 const newsCardList = new NewsCardList(document.querySelector('#card-zone'), newsCard);
 
+let isLogged = false;
 let keyWord;
 let currentDate = new Date();
 let cardMatrixLine = 0;
 let dateAgo = weekAgo(currentDate);
+
 
 const mainApi = new MainApi({
   baseUrl: `https://api.news-explorer-pr.tk`,
@@ -31,26 +35,26 @@ const mainApi = new MainApi({
     'Content-Type': 'application/json',
   }
  });
+ isLogged = logout(isLogged)
+ isLogged = getUserData(isLogged);
+ console.log(isLogged)
 
- mainApi.createArticle()
- .then((data) => {
- console.log(data.data)
- newsCardList.render(data.data, dateFormatChange)
- newsCardList.listeners(data.data, saveCard);
-});
- function saveCard(url){
-  mainApi.createArticle(url)
+ function saveCard(keyword, cardName, cardImage, cardDescription, cardPublishedAt, cardSourceName, newsUrl){
+
+  return mainApi.createArticle(keyword, cardName, cardImage, cardDescription, cardPublishedAt, cardSourceName, newsUrl)
   .then(data =>{
-    console.log('data')
-
-
+    return data;
   })
-}
+ }
 
   document.forms.search.addEventListener("submit", function (event) {
+      event.preventDefault();
+  document.querySelector('.not-found').classList.add('not-found_hidden');
+  document.querySelector('#show-more-button').classList.remove('news-card__show-more-button_hidden');
+  document.querySelector('.search-preloader').classList.remove('search-preloader_hidden');
   event.preventDefault();
   keyWord =  document.querySelector('#search-input').value;
- document.querySelector('#search-input').value = '';
+  document.querySelector('#search-input').value = '';
 
 const URL = 'everything?' +
   `q=${keyWord}&` +
@@ -72,21 +76,36 @@ newsApi.getNews()
 .then((data) => {
   document.querySelector('#card-zone').textContent = '';
   cardMatrixLine = 0;
-  return data
-})
-.then((data) => {
- return  listToMatrix(data.articles, 3);
-})
- .then((matrix) => {
-  showCards(matrix)
-  newsCardList.listeners(matrix)
+  if(data.articles.length === 0){
+    document.querySelector('.search-result').classList.add('search-result_hidden');
+    document.querySelector('.search-preloader').classList.add('search-preloader_hidden');
+    document.querySelector('.not-found').classList.remove('not-found_hidden');
+
+  }else{
+  if(isLogged){
+    newsCardList.listeners(data.articles, saveCard, keyWord)};
+    let matrix =  listToMatrix(data.articles, 3);
+  return showCards(matrix);
+  }
  })
 });
 
   const showCards = (cards) => {
-   newsCardList.render(cards[cardMatrixLine++], dateFormatChange);
+    document.querySelector('.search-preloader').classList.add('search-preloader_hidden');
 
-  document.querySelector('#show-more-button').onclick = function(){showCards(cards)};
+    newsCardList.render(cards[cardMatrixLine++], dateFormatChange, keyWord, isLogged);
+    if(isLogged){
+      document.querySelector('.news-card__pop-up-line').textContent = 'Сохранить';
+    }else{
+      document.querySelector('.news-card__pop-up-line').textContent = 'Войдите, чтобы сохранять статьи';
+    }
+    document.querySelector('.search-result').classList.remove('search-result_hidden');
+
+    if(cardMatrixLine < cards.length){
+      document.querySelector('#show-more-button').onclick = function(){showCards(cards)};
+    }else{
+      document.querySelector('#show-more-button').classList.add('news-card__show-more-button_hidden');
+    }
 }
 
 document.querySelector('#two-lines').addEventListener("click", function () {
@@ -97,24 +116,26 @@ document.querySelector('#two-lines').addEventListener("click", function () {
 });
 
 function registration(){
-document.querySelector('#registration').addEventListener("click", function () {
+document.querySelector('#registration').addEventListener("click", function (e) {
+  e.preventDefault();
+
   popup.close();
   popup.clearContent();
   popup.setContent('registration');
   popup.open();
   form.listeners();
-  document.querySelector('#button-submit').addEventListener('click', function(){
-    console.log('data');
+
+  document.forms.popupForm.addEventListener('submit', function(e){
+    e.preventDefault();
     mainApi.signup(document.querySelector('#input-email').value, document.querySelector('#input-password').value, document.querySelector('#input-name').value)
    .then((data) => {
-     console.log(data);
-     if(typeof(data) === 'object' ){
+     if(data ){
      success();
-     }else{
-       form.setServerError(document.querySelector('.error_bottom'))
      }
   })
-
+    .catch(err => {
+      form.setServerError(document.querySelector('.error_bottom'), err)
+    })
   })
   closePopup()
   popupAuth();
@@ -127,24 +148,25 @@ function auth(){
   popup.setContent('auth');
   popup.open();
   form.listeners();
-  document.querySelector('#button-submit').addEventListener('click', function(e){
+  document.forms.popupForm.addEventListener('submit', function(e){
     e.preventDefault();
     mainApi.signin(document.querySelector('#input-email').value, document.querySelector('#input-password').value)
    .then((data) => {console.log(data.data.name);
 
-    if(data){    console.log(data)
-
+    if(data){
        header.render({
       isLoggedIn: true,
       name: data.data.name,
     })
+    isLogged = true;
 
     popup.close();
-      }else{
-        form.setServerError(document.querySelector('.error_bottom'))
       }
   })
-
+  .catch(err => {
+    form.setServerError(document.querySelector('.error_bottom'), err)
+        isLogged = false;
+  })
   })
   registration();
   closePopup()

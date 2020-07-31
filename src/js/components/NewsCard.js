@@ -1,7 +1,7 @@
 
 
 export class NewsCard {
-  constructor(keyword, cardName, cardImage, cardDescription, cardPublishedAt,cardSourceName,newsUrl) {
+  constructor(keyword, cardName, cardImage, cardDescription, cardPublishedAt,cardSourceName, newsUrl, logged) {
     this.keyword = keyword;
     this.cardName = cardName;
     this.cardImage = cardImage;
@@ -9,70 +9,71 @@ export class NewsCard {
     this.cardPublishedAt = cardPublishedAt;
     this.cardSourceName = cardSourceName;
     this.newsUrl = newsUrl;
+    this.logged = logged;
   }
 
-  save(event, data, save) {
-    event.returnValue = true
-    if (event.target.classList.contains('news-card__icon-svg_index') || event.target.classList.contains('news-card__icon-svg_index').children[0,1 ] ||  event.target.classList.contains('news-card__icon-svg') ||  event.target.classList.contains('card-svg') ) {
-      if(!event.target.classList.contains('news-card__icon-svg_black')){
+  save(event, data, savee, keyword) {
+    if (event.target.classList.contains('news-card__icon')) {
+      if(!event.target.classList.contains('news-card__icon_saved')){
         const card = event.target.closest('.news-card');
-        console.log(card)
-        save(data[0])
+       let elem = data.filter(function(elem){
+
+          if(elem.url === card.href){
+          return elem;
+          }
+        })
+
+ savee(keyword, elem[0].title, elem[0].urlToImage, elem[0].description, elem[0].publishedAt, elem[0].source.name, elem[0].url)
         .then(data => {
-
-         event.target.classList.add('news-card__icon-svg_blue')});
-
-    }else{
-      event.target.classList.remove('news-card__icon-svg_blue')
-
-    }
+          console.log(data)
+         event.target.classList.add('.news-card__icon_saved')}
+)
+.catch(err => console.log(err));
+        }
     }
   }
   remove(event, data, remover) {
     console.log(event.target)
-    if (event.target.classList.contains('button') || event.target.parentElement.classList.contains('button') || event.target.classList.contains('card-svg') ) {
-      if (window.confirm("Вы действительно хотите удалить эту статью?")) {
+    if (event.target.classList.contains('news-card__icon_articles')) {
         const card = event.target.closest('.news-card');
-        console.log(data[0])
-         remover(data[0]._id)
-        .then(document.querySelector('#card-zone')).removeChild(card)
-        .catch(err)
-      }
+
+        let elem = data.filter(function(elem){
+
+          if(elem.link === card.href){
+          return elem;
+          }else{
+            return false;
+          }
+        })
+         remover(elem[0]._id)
+        .then(document.querySelector('#card-zone').removeChild(card))
+        .catch(err => console.log(err))
+
     }
   }
 
   create(keyword, cardNameValue, cardDescriptionValue, cardImageValue, cardPublishedAtValue, cardSourceNameValue, newsUrl) {
     let key = '';
     let icon =  ` <button onclick="event.preventDefault()" class="button news-card__save-icon news-card__icon news-card__icon-svg_black news-card__icon-svg_index">
-  <svg class="news-card__icon-svg" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path class="card-svg" d="M11.3822 15.7137L6 19.9425V4L18 4V19.9425L12.6178 15.7137L12 15.2283L11.3822 15.7137Z" stroke="#B6BCBF" stroke-width="2"/>
-  </svg>
-    </button>`
-    let popupLine = ``
-    if(cardImageValue){
-      console.log(cardImageValue)
-    }else{
+    </button>`;
+    let popupLine = ``;
+
+    if(!cardImageValue){
       cardImageValue = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
-    }
+   }
     if(window.location.pathname === '/articles.html'){
-      key =  `<span id="keyWord" class="text news-card__key-word">${keyword}</span>`
+      key =  `<span  id="keyWord" class="text news-card__key-word">${keyword}</span>`
       popupLine = `<span class="text news-card__pop-up-line">Убрать из сохраненных</span>`;
-      icon = `<button onclick="event.preventDefault()" class="button news-card__icon news-card__save-icon news-card__icon news-card__icon-svg_black-articles">
-      <svg class="news-card__icon-svg news-card__icon-svg-articles" width="21" height="21" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path class="card-svg" fill-rule="evenodd" clip-rule="evenodd" d="M12 0H6V2H0V4H18V2H12V0ZM2 6V17C2 18.1046 2.89543 19 4 19H14C15.1046 19 16 18.1046 16 17V6H14V17H4V6H2ZM6 6L6 15H8L8 6H6ZM10 6V15H12V6H10Z" fill="#B6BCBF"/>
-      </svg>
+      icon = `<button onclick="event.preventDefault()" class="button news-card__icon news-card__save-icon news-card__icon_articles">
+
     </button>`
-      }else if('авторизирован и не сохр'){
-        popupLine = `<span class="text news-card__pop-up-line">Сoхранить</span>`
+      }else{
+        // popupLine = `<span class="text news-card__pop-up-line">Сoхранить</span>`
 
-      }else if('авторизирован и  сохр'){
-      icon =  ` <button onclick="event.preventDefault()" class="button news-card__icon news-card__save-icon news-card__icon-svg_blue">
-        <svg class="news-card__icon-svg news-card__icon-svg_blue" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path class="card-svg" d="M11.3822 15.7137L6 19.9425V4L18 4V19.9425L12.6178 15.7137L12 15.2283L11.3822 15.7137Z"     stroke="#B6BCBF" stroke-width="2"/>
-        </svg>
-      </button>`
+      // }else if(!logged && ' и  сохр'){
+      // icon =  ` <button onclick="event.preventDefault()" class="button news-card__icon news-card__icon_saved">
+      // </button>`
 
-      }else if('не авторизирован'){
          popupLine = `<span class="text news-card__pop-up-line">Войдите, чтобы сохранять статьи</span>`
 
       }

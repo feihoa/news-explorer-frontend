@@ -1,4 +1,4 @@
-export function dateFormatChange(d){
+export default function dateFormatChange(d){
   if(d){
   d = d.replace(/T.*Z/, "").replace(/-0/, '-').split('-');
 
