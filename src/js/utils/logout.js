@@ -10,22 +10,18 @@ const mainApi = new MainApi({
   }
  });
 
-export default function logout(isLogged){
-  document.querySelector('#button-logout').addEventListener('click', function(){
-   mainApi.logout()
+export default function logout(){
+   return mainApi.logout()
    .then((data) =>
-   {
-     header.render({
-       isLoggedIn: false,
+   { header.render({
+      isLoggedIn: false,
      })
      window.location.replace('../index.html');
-     return isLogged = false;
+
+     return data;
 
    }) .catch(err =>  {
-     console.log(err)
-     isLogged = false;
-    return isLogged;
+     console.log(err);
+    return err;
     })
-    .end()
-  })
  }

@@ -27,9 +27,12 @@
 .news-card__icon_saved{
   background: url(../../../images/bookmark_blue.svg) center no-repeat;
   background-color: white;
-
-
 }
+.news-card__icon_saved:hover{
+  background: url(../../../images/bookmark_blue.svg) center no-repeat;
+  background-color: white;
+}
+
 .news-card__icon_articles{
   border: none;
   position: absolute;

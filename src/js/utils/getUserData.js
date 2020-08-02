@@ -10,25 +10,28 @@ const mainApi = new MainApi({
   }
  });
 
-export default function getUserData(isLogged){
-mainApi.getUserData()
+export default function getUserData(){
+  const popupLine = document.querySelector('.news-card__pop-up-line');
+return mainApi.getUserData()
 .then((data) => {
  if(data.data){
    header.render({
  isLoggedIn: true,
  name: data.data.name
 })
- isLogged = true;
+if(window.location.pathname === '/articles.html'){
+document.querySelector('#user-name').textContent = data.data.name;
+document.querySelector('#user-name-a').textContent = data.data.name;
+}
+ return true;
  }
 })
 .catch(err =>
  {
-   isLogged = false;
-
  if(window.location.pathname === '/articles.html'){
    window.location.replace('../index.html');
  }
  console.log(err)
- return isLogged;
+ return false;
 })
 }

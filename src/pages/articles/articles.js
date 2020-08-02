@@ -6,8 +6,11 @@ import {NewsCardList} from "../../js/components/NewsCardList";
 import {NewsCard} from "../../js/components/NewsCard.js";
 import dateFormatChange from "../../js/utils/dateFormatChange.js";
 import unique from "../../js/utils/unique.js";
+import logout from "../../js/utils/logout";
+import getUserData from '../../js/utils/getUserData.js';
 
-let isLogged = true;
+
+let isLogged = '';
 let keywords = [];
 const mobileMenu = new MobileMenu();
 const newsCard = new NewsCard();
@@ -19,6 +22,10 @@ const mainApi = new MainApi({
     'Content-Type': 'application/json'
   }
  });
+ function checkAuth(){
+ getUserData()
+ }
+ checkAuth()
 
 document.querySelector('#two-lines').addEventListener("click", function () {
   document.querySelector('#two-lines').classList.toggle("change");
@@ -33,22 +40,24 @@ document.querySelector('#two-lines').addEventListener("click", function () {
     mobileMenu.toggle(document.querySelector('#bar2'), 'two-lines__bar_white');
 
 });
+document.querySelector('#button-logout').addEventListener('click', function(e){
+  e.preventDefault();
+logout()
+.then(data =>{
+ if(data){
+   isLogged = false;
+ }else{
+   isLogged = true;
+ }
+})
+});
 
- mainApi.getUserData()
- .then((data) => {
-    document.querySelector('#user-name').textContent = data.data.name;
-    document.querySelector('#user-name-a').textContent = data.data.name;
-  isLogged = true;
-  })
-  .catch(err =>
-  {
-    isLogged = false;
-  });
 
 
 function getMainArticlesInfo(){
   mainApi.getArticles()
   .then((data) => {
+    keywords = [];
     data.data.forEach(function(elem){
       keywords.push(elem.keyword);
     })
@@ -67,25 +76,32 @@ function getMainArticlesInfo(){
         document.querySelector('#articles-number').textContent = `${data.data.length} сохраненных статей`;
     }
 
-    if(keywords.length > 2){
+    if(keywords.length > 3){
       document.querySelector('#keywords').textContent = `По ключевым словам: ${keywords[0]}, ${keywords[1]}  и ${keywords.length - 2} другим`;
+    }else if(keywords.length === 3){
+      document.querySelector('#keywords').textContent = `По ключевым словам: ${keywords[0]}, ${keywords[1]}  и ${keywords[2]}`;
     }else if(keywords.length === 2){
-      document.querySelector('#keywords').textContent = `По ключевым словам: ${keywords[0]}, и ${keywords[1]}`;
-    }else if(keywords.length === 1){
+      document.querySelector('#keywords').textContent = `По ключевым словам: ${keywords[0]} и ${keywords[1]}`;
+    }else if(keywords.length === 1 && data.data.length !== 0){
       document.querySelector('#keywords').textContent = `По ключевому слову: ${keywords[0]}`;
+    }else if( data.data.length === 0){
+      document.querySelector('#keywords').textContent = ``;
     }
-  newsCardList.render(data.data, dateFormatChange, isLogged)
+    document.querySelector('#card-zone').textContent = '';
+
+  newsCardList.render(data.data, dateFormatChange)
   newsCardList.listeners(data.data, removeCard);
+
+
 });
 }
 getMainArticlesInfo();
-
 function removeCard(id){
  return mainApi.removeArticle(id)
   .then(data =>{
-    console.log('data')
     getMainArticlesInfo();
     return(data)
 
   })
+  .catch(err => console.log(err))
 }

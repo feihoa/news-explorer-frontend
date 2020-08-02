@@ -29,7 +29,6 @@ let keyWord;
 let currentDate = new Date();
 let cardMatrixLine = 0;
 let dateAgo = weekAgo(currentDate);
-let saved ;
 
 
 const mainApi = new MainApi({
@@ -56,11 +55,8 @@ const mainApi = new MainApi({
  .then((data) => {
 if(data){
   isLogged = true;
-  isLoggedIn(true)
 }else{
   isLogged = false;
-  isLoggedIn(false)
-
 }
 })
  }
@@ -69,6 +65,7 @@ if(data){
  function saveCard(keyword, cardName, cardImage, cardDescription, cardPublishedAt, cardSourceName, newsUrl){
   return mainApi.createArticle(keyword, cardName, cardImage, cardDescription, cardPublishedAt, cardSourceName, newsUrl)
   .then(data =>{
+    // document.querySelector('.news-card__icon_index').classList.add('news-card__icon_saved');
     return data;
   })
  }
@@ -107,56 +104,43 @@ newsApi.getNews()
     document.querySelector('.not-found').classList.remove('not-found_hidden');
 
   }else{
-    console.log(isLogged)
-
     let matrix =  listToMatrix(data.articles, 3);
     showCards(matrix);
-    if(isLogged){
+console.log(isLogged)
+        if(isLogged){
     newsCardList.listeners(data.articles, saveCard, keyWord)
     isLoggedIn(true)
 
     }else{
     isLoggedIn(false)
   };
+
   }
  })
 });
 
   const showCards = (cards) => {
+    let saved = false;
     document.querySelector('.search-preloader').classList.add('search-preloader_hidden');
-
     mainApi.getArticles()
-   .then(data =>{
-     saved = [];
-      data.data.forEach(elem =>{
-        saved.push(elem.link)
-      })
+    .then(data =>{
+    data.data.forEach(item => {
+      cards.forEach(card => {
+      if (item.link === card.url){
+        saved = true;
+      }
+    })
+    })
+    })
+    newsCardList.render(cards[cardMatrixLine++], dateFormatChange, keyWord), saved;
 
-      newsCardList.render(cards[cardMatrixLine++], dateFormatChange, keyWord, saved);
-
-
-       document.querySelector('.search-result').classList.remove('search-result_hidden');
+    document.querySelector('.search-result').classList.remove('search-result_hidden');
 
     if(cardMatrixLine < cards.length){
       document.querySelector('#show-more-button').onclick = function(){showCards(cards)};
     }else{
       document.querySelector('#show-more-button').classList.add('news-card__show-more-button_hidden');
     }
-    })
-    .catch(err =>{
-
-      newsCardList.render(cards[cardMatrixLine++], dateFormatChange, keyWord, saved);
-
-
-      document.querySelector('.search-result').classList.remove('search-result_hidden');
-
-   if(cardMatrixLine < cards.length){
-     document.querySelector('#show-more-button').onclick = function(){showCards(cards)};
-   }else{
-     document.querySelector('#show-more-button').classList.add('news-card__show-more-button_hidden');
-   }
-    })
-
 }
 
 document.querySelector('#two-lines').addEventListener("click", function () {
@@ -202,7 +186,7 @@ function auth(){
   document.forms.popupForm.addEventListener('submit', function(e){
     e.preventDefault();
     mainApi.signin(document.querySelector('#input-email').value, document.querySelector('#input-password').value)
-   .then((data) => {
+   .then((data) => {console.log(data.data.name);
     if(data){
        header.render({
       isLoggedIn: true,
@@ -210,8 +194,6 @@ function auth(){
     })
     isLogged = true;
     isLoggedIn(true)
-    document.querySelector('#card-zone').textContent = '';
-    document.querySelector('.search-result').classList.add('search-result_hidden');
 
     popup.close();
       }

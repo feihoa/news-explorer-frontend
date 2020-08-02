@@ -78,7 +78,6 @@ export class MainApi {
     .then((res) => {
         if (res.ok) {
           return res.json();
-          console.log(res)
         }
 
         return Promise.reject(`${res.status} ${res.statusText}`);

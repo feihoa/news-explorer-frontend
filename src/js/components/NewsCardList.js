@@ -5,8 +5,8 @@ export class NewsCardList {
 
   }
 
-  addCard(keyword, cardName, cardDescription, cardImage, cardPublishedAt, cardSourceName, newsUrl) {
-      this.container.insertAdjacentHTML('beforeend', this.newsCard.create(keyword, cardName, cardDescription, cardImage, cardPublishedAt, cardSourceName, newsUrl));
+  addCard(keyword, cardName, cardDescription, cardImage, cardPublishedAt, cardSourceName, newsUrl, saved) {
+      this.container.insertAdjacentHTML('beforeend', this.newsCard.create(keyword, cardName, cardDescription, cardImage, cardPublishedAt, cardSourceName, newsUrl, saved));
   }
   listeners(data, func, key) {
     if(window.location.pathname === '/articles.html'){
@@ -14,7 +14,7 @@ export class NewsCardList {
       this.container.addEventListener('click', event => {
 
         this.newsCard.remove(event, data, func)
-    });
+    }, {once:true});
 
     }else{
       this.container.addEventListener('click', event => {
@@ -30,11 +30,12 @@ export class NewsCardList {
     }
   }
 
-  render(data, dateFormatChange, key, logged) {
+  render(data, dateFormatChange, key, saved) {
       this.data = data;
       this.dateFormatChange = dateFormatChange;
       this.key = key;
-      this.logged = logged;
+      this.saved = saved;
+
       if(data){
 
      return  data.forEach(elem => {
@@ -46,7 +47,7 @@ export class NewsCardList {
       const sourceName = (this._deleteTags(elem.source.name) || this._deleteTags(elem.source));
       const url = (this._deleteTags(elem.url)|| this._deleteTags(elem.link));
 
-          this.addCard(keyword, title, description, urlToImage, this.dateFormatChange(publishedAt), sourceName, url);
+          this.addCard(keyword, title, description, urlToImage, this.dateFormatChange(publishedAt), sourceName, url, saved);
       })
     }
   }

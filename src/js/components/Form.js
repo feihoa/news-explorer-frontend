@@ -38,9 +38,11 @@ export class Form {
   setServerError(elem, err){
     console.log(err)
     if(err == 409){
-      elem.textContent = 'Ошибка: ' + 'такой пользователь уже есть'
+      elem.textContent = 'Ошибка: ' + 'такой пользователь уже есть';
+     }else if(err == 429){
+      elem.textContent = 'Ошибка: ' + 'слишком много запросов';
      }else{
-      elem.textContent = 'Ошибка: ' + 'неправильный формат данных'
+      elem.textContent = 'Ошибка: ' + 'неправильный формат данных';
 
      }
   }
