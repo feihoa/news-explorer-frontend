@@ -1,5 +1,9 @@
-export class Header {
+import { BaseComponent } from "./BaseComponent";
 
+export class Header extends BaseComponent{
+constructor(){
+  super()
+}
   render(props){
     this.props = props;
     this.isLoggedIn = props.isLoggedIn;

@@ -20,8 +20,5 @@ export default function logout(){
 
      return data;
 
-   }) .catch(err =>  {
-     console.log(err);
-    return err;
-    })
+   })
  }

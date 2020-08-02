@@ -5,6 +5,7 @@
   .two-lines{
     display: inline-block;
     text-align: right;
+    height: 10px;
     margin-left: calc(100% - 25px);
 
 

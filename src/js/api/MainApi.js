@@ -1,10 +1,3 @@
- // signup регистрирует нового пользователя;
-  // signin аутентифицирует пользователя на основе почты и пароля;
-  // getUserData возвращает информацию о пользователе;
-  // getArticles забирает все статьи;
-  // createArticle создаёт статью;
-  // removeArticle удаляет статью.
-
 export class MainApi {
   constructor(options) {
     this.options = options;
@@ -33,12 +26,11 @@ export class MainApi {
             return Promise.reject(`${res.status}`);
       })
       .then((data) => {
-        console.log(data);
         return data;
       })
-
-
+      .catch();
   }
+
   signin(email, password){
     this.email = email;
     this.password = password;
@@ -55,7 +47,6 @@ export class MainApi {
   })
     .then((res) => {
         if (res.ok) {
-          console.log(res)
           return res.json();
         }
             return Promise.reject(`${res.status}`);
@@ -63,9 +54,10 @@ export class MainApi {
       .then((data) => {
         return data;
       })
-
+      .catch();
 
   }
+
   getUserData(){
     return  fetch(this.options.baseUrl + '/users/me', {
       method: 'GET',
@@ -83,13 +75,12 @@ export class MainApi {
         return Promise.reject(`${res.status} ${res.statusText}`);
       })
       .then((data) => {
-        console.log(data);
-
         return data;
       })
-
-
+      .catch();
   }
+
+
   getArticles(){
     return  fetch(this.options.baseUrl + '/articles', {
       method: 'GET',
@@ -104,14 +95,12 @@ export class MainApi {
           return res.json();
         }
 
-        return Promise.reject(`${res.status} ${res.statusText}`);
+        return Promise.reject(`${res.status}`);
       })
       .then((data) => {
-        console.log(data);
-
         return data;
       })
-
+      .catch();
 
   }
 
@@ -139,7 +128,7 @@ export class MainApi {
       'Content-Type': 'application/json',
       headers:
           this.options.headers,
-  })
+      })
       .then((res) => {
           if (res.ok) {
             return res.json();
@@ -148,12 +137,9 @@ export class MainApi {
           return Promise.reject(`${res.status}`);
         })
         .then((data) => {
-        console.log(data);
-
           return data;
         })
-
-
+        .catch();
   };
 
 
@@ -175,12 +161,9 @@ export class MainApi {
           return Promise.reject(`${res.status}`);
         })
         .then((data) => {
-        console.log(data);
-
           return data;
         })
-
-
+        .catch();
   }
 
   logout(){
@@ -200,10 +183,9 @@ export class MainApi {
         return Promise.reject(`${res.status}`);
       })
       .then((data) => {
-        console.log(data);
-
         return data;
       })
+      .catch();
 
   }
 

@@ -1,10 +1,8 @@
 import "./index.css";
-import "./../../js/index.js";
 
 import {MobileMenu} from "../../js/components/MobileMenu.js";
 import {Form} from "../../js/components/Form";
 import {NewsApi} from "../../js/api/NewsApi.js";
-import {MainApi} from "../../js/api/MainApi.js";
 import {NewsCardList} from "../../js/components/NewsCardList";
 import {NewsCard} from "../../js/components/NewsCard.js";
 import {Popup} from "../../js/components/Popup";
@@ -14,75 +12,84 @@ import listToMatrix from "../../js/utils/listToMatrix.js";
 import {Header} from '../../js/components/Header.js';
 import logout from '../../js/utils/logout.js'
 import getUserData from '../../js/utils/getUserData.js';
-import isLoggedIn from '../../js/utils/cardPopupLineText.js';
-
+import {mainApi} from '../../js/constants/mainApi.js'
+import {
+  showMoreButton,
+  buttonLogout,
+  searchResult,
+  notFound,
+  searchPreloader,
+  searchInput,
+  cardZone,
+  headerElem,
+  menuLinks,
+  menuIconLines,
+  linkAuth
+} from '../../js/constants/main.js'
 
 const header = new Header();
 const mobileMenu = new MobileMenu();
 const popup = new Popup(document.querySelector('#popup'));
 const form = new Form(event);
 const newsCard = new NewsCard();
-const newsCardList = new NewsCardList(document.querySelector('#card-zone'), newsCard);
+const newsCardList = new NewsCardList(cardZone, newsCard);
+const currentDate = new Date();
+const dateAgo = weekAgo(currentDate);
 
 let isLogged = '';
 let keyWord;
-let currentDate = new Date();
 let cardMatrixLine = 0;
-let dateAgo = weekAgo(currentDate);
-let saved ;
+let saved;
 
 
-const mainApi = new MainApi({
-  baseUrl: `https://api.news-explorer-pr.tk`,
-  headers: {
-    'Content-Type': 'application/json',
-  }
- });
-
- document.querySelector('#button-logout').addEventListener('click', function(e){
+ buttonLogout.addEventListener('click', function(e){
    e.preventDefault();
- logout().then(data =>{
+ logout()
+ .then(data =>{
   if(data){
     isLogged = false;
   }else{
     isLogged = true;
   }
+ }).catch(err =>  {;
+ return err;
  })
+ }, {once:true});
 
-
- });
  function checkAuth(){
  getUserData()
  .then((data) => {
 if(data){
   isLogged = true;
-  isLoggedIn(true)
 }else{
   isLogged = false;
-  isLoggedIn(false)
-
 }
 })
- }
+.catch(err => {console.log(err); return err;})
+}
  checkAuth();
 
  function saveCard(keyword, cardName, cardImage, cardDescription, cardPublishedAt, cardSourceName, newsUrl){
   return mainApi.createArticle(keyword, cardName, cardImage, cardDescription, cardPublishedAt, cardSourceName, newsUrl)
   .then(data =>{
-    return data;
+  return data;
   })
+  .catch(err => {console.log(err); return err;})
  }
 
   document.forms.search.addEventListener("submit", function (event) {
-      event.preventDefault();
-  document.querySelector('.not-found').classList.add('not-found_hidden');
-  document.querySelector('#show-more-button').classList.remove('news-card__show-more-button_hidden');
-  document.querySelector('.search-preloader').classList.remove('search-preloader_hidden');
-  event.preventDefault();
-  keyWord =  document.querySelector('#search-input').value;
-  document.querySelector('#search-input').value = '';
+    event.preventDefault();
+    form.inputBlock();
+    if(!form.searchFormError(searchInput.value)){
+  searchResult.classList.add('search-result_hidden');
+  notFound.classList.add('not-found_hidden');
+  showMoreButton.classList.remove('news-card__show-more-button_hidden');
+  searchPreloader.classList.remove('search-preloader_hidden');
 
-const URL = 'everything?' +
+  keyWord =  searchInput.value;
+  searchInput.value = '';
+
+  const URL = 'everything?' +
   `q=${keyWord}&` +
   `from=${dateAgo.replace(/T.*Z/, "")}&` +
   'language=ru&' +
@@ -99,31 +106,29 @@ const URL = 'everything?' +
 
 newsApi.getNews()
 .then((data) => {
-  document.querySelector('#card-zone').textContent = '';
+  cardZone.textContent = '';
   cardMatrixLine = 0;
   if(data.articles.length === 0){
-    document.querySelector('.search-result').classList.add('search-result_hidden');
-    document.querySelector('.search-preloader').classList.add('search-preloader_hidden');
-    document.querySelector('.not-found').classList.remove('not-found_hidden');
-
+    searchResult.classList.add('search-result_hidden');
+    searchPreloader.classList.add('search-preloader_hidden');
+    notFound.classList.remove('not-found_hidden');
   }else{
-    console.log(isLogged)
-
     let matrix =  listToMatrix(data.articles, 3);
     showCards(matrix);
     if(isLogged){
     newsCardList.listeners(data.articles, saveCard, keyWord)
-    isLoggedIn(true)
-
+    newsCardList.cardPopupLineText(true)
     }else{
-    isLoggedIn(false)
-  };
+    newsCardList.cardPopupLineText(false)
+    };
   }
  })
+}
+searchInput.value = '';
+form.inputUnblock();
 });
 
   const showCards = (cards) => {
-    document.querySelector('.search-preloader').classList.add('search-preloader_hidden');
 
     mainApi.getArticles()
    .then(data =>{
@@ -131,43 +136,33 @@ newsApi.getNews()
       data.data.forEach(elem =>{
         saved.push(elem.link)
       })
-
       newsCardList.render(cards[cardMatrixLine++], dateFormatChange, keyWord, saved);
-
-
-       document.querySelector('.search-result').classList.remove('search-result_hidden');
-
-    if(cardMatrixLine < cards.length){
-      document.querySelector('#show-more-button').onclick = function(){showCards(cards)};
-    }else{
-      document.querySelector('#show-more-button').classList.add('news-card__show-more-button_hidden');
-    }
+      document.querySelector('.search-preloader').classList.add('search-preloader_hidden');
+      document.querySelector('.search-result').classList.remove('search-result_hidden');
     })
     .catch(err =>{
-
       newsCardList.render(cards[cardMatrixLine++], dateFormatChange, keyWord, saved);
-
-
+      document.querySelector('.search-preloader').classList.add('search-preloader_hidden');
       document.querySelector('.search-result').classList.remove('search-result_hidden');
-
-   if(cardMatrixLine < cards.length){
+      console.log(err)
+      return err;
+    })
+    if(cardMatrixLine < cards.length){
      document.querySelector('#show-more-button').onclick = function(){showCards(cards)};
-   }else{
+    }else{
      document.querySelector('#show-more-button').classList.add('news-card__show-more-button_hidden');
    }
-    })
-
 }
 
-document.querySelector('#two-lines').addEventListener("click", function () {
-  document.querySelector('#two-lines').classList.toggle("change");
-  mobileMenu.toggle(document.querySelector('#header'), 'header_menu-mobile-opened');
-  mobileMenu.toggle(document.querySelector('#menu-links'), 'header__menu-links-hidden');
+menuIconLines.addEventListener("click", function () {
+  menuIconLines.classList.toggle("change");
+  mobileMenu.toggle(headerElem, 'header_menu-mobile-opened');
+  mobileMenu.toggle(menuLinks, 'header__menu-links-hidden');
 
 });
 
 function registration(){
-document.querySelector('#registration').addEventListener("click", function (e) {
+  document.querySelector('#registration').addEventListener("click", function (e) {
   e.preventDefault();
 
   popup.close();
@@ -178,19 +173,24 @@ document.querySelector('#registration').addEventListener("click", function (e) {
 
   document.forms.popupForm.addEventListener('submit', function(e){
     e.preventDefault();
-    mainApi.signup(document.querySelector('#input-email').value, document.querySelector('#input-password').value, document.querySelector('#input-name').value)
+    form.inputBlock();
+    mainApi.signup((document.querySelector('#input-email').value).toLowerCase(), document.querySelector('#input-password').value, document.querySelector('#input-name').value)
    .then((data) => {
-     if(data ){
+     if(data){
      success();
+     form.inputUnblock();
      }
   })
     .catch(err => {
       form.setServerError(document.querySelector('.error_bottom'), err)
+      form.inputUnblock();
+      return err;
     })
   })
-  closePopup()
+  closePopup();
   popupAuth();
-});
+
+},{once:true});
 }
 
 function auth(){
@@ -201,7 +201,8 @@ function auth(){
   form.listeners();
   document.forms.popupForm.addEventListener('submit', function(e){
     e.preventDefault();
-    mainApi.signin(document.querySelector('#input-email').value, document.querySelector('#input-password').value)
+    form.inputBlock();
+    mainApi.signin((document.querySelector('#input-email').value).toLowerCase(), document.querySelector('#input-password').value)
    .then((data) => {
     if(data){
        header.render({
@@ -209,51 +210,52 @@ function auth(){
       name: data.data.name,
     })
     isLogged = true;
-    isLoggedIn(true)
-    document.querySelector('#card-zone').textContent = '';
-    document.querySelector('.search-result').classList.add('search-result_hidden');
-
+    cardZone.textContent = '';
+    searchResult.classList.add('search-result_hidden');
+    document.querySelector('.search-preloader').classList.add('search-preloader_hidden');
     popup.close();
-      }
+    form.inputUnblock();
+    }
   })
   .catch(err => {
     form.setServerError(document.querySelector('.error_bottom'), err)
+    form.inputUnblock();
     isLogged = false;
-    isLoggedIn(false)
-
+    return err;
   })
   })
   registration();
   closePopup()
 }
 
-document.querySelector('#link-auth').addEventListener("click", function () {
+linkAuth.addEventListener("click", function () {
   auth();
 });
 
 function popupAuth(){
   document.querySelector('#log-in').addEventListener("click", function () {
   auth();
-  });
+  },{once:true});
 }
 
 function closePopup(){
-document.querySelector('#close-popup').addEventListener("click", function () {
+  document.querySelector('#close-popup').addEventListener("click", function () {
   popup.close();
   popup.clearContent();
 
-});
+},{once:true});
 
 
 document.addEventListener("click", function () {
+  const popupContent = document.querySelector('#popup__content');
 
-  if (document.querySelector('#popup').contains(event.target) && (document.querySelector('#popup__content') === null || !document.querySelector('#popup__content').contains(event.target)) ){
+  if (document.querySelector('#popup').contains(event.target) && (popupContent === null || !popupContent.contains(event.target)) ){
 
   popup.close();
   popup.clearContent();
   }
-
 });
+
 document.addEventListener('keyup', function (e) {
   if(e.keyCode === 27){
     popup.close();
@@ -270,137 +272,3 @@ function success(){
   popupAuth();
   closePopup();
   }
-
-
-
-// import {EditPopup} from "./js/EditPopup.js";
-// import {FormValidator} from "./js/FormValidator.js";
-// import {Loader} from "./js/Loader.js";
-// import {PicPopup} from "./js/PicPopup.js";
-// import {Popup} from "./js/Popup.js";
-// import {UserInfo} from "./js/UserInfo.js";
-
-
-// export const mainFunc = (function ()  {
-
-
-
-// const card = new Card();
-// const popup = new Popup(document.querySelector('#formCard'));
-// const popupPhoto = new Popup(document.querySelector('#photoEdit'));
-
-// const picPopup = new PicPopup(document.querySelector('#popupPic'));
-
-// const validator = new FormValidator(event);
-// const editPopup = new EditPopup(document.querySelector('#formEdit'));
-// const cardList = new CardList(document.querySelector('.places-list'), card);
-// const userInfo =  new UserInfo();
-// const loader = new Loader();
-
-
-// api.getUserInfo()
-// .then ((data) => {
-
-//   userInfo.setUserInfo(data.name, data.about);
-//   userInfo.setUserInfoAvatar(data.avatar);
-
-
-// })
-
-// api.getInitialCards()
-// .then((data) => {
-//   cardList.render(data)
-// });
-
-
-
-
-
-
-// document.querySelector('#placesList').addEventListener('click', function () {
-//   picPopup.popupPicHandler(event);
-// });
-
-// document.querySelector('#userInfoEditButton').addEventListener("click", function () {
-//   loader.changeStatusBack(document.querySelector('#submitEdit'));
-
-//   editPopup.setCurrentValue(userInfo.updateUserInfo().name, userInfo.updateUserInfo().about);
-//   editPopup.open();
-//   validator.listeners();
-
-// });
-
-
-
-// document.querySelector('#popupCloseCard').addEventListener("click", function () {
-//   popup.close()
-// });
-
-// document.querySelector('#closeEditPhoto').addEventListener("click", function () {
-//   popupPhoto.close()
-// });
-
-// document.querySelector('#popupClosePic').addEventListener("click", function () {
-//   picPopup.close();
-// });
-
-// document.querySelector('#closeEdit').addEventListener("click", function () {
-//    editPopup.close()
-// });
-
-
-
-// document.forms.edit.addEventListener("submit", function (event) {
-//   event.preventDefault();
-
-//   loader.changeStatus(document.querySelector('#submitEdit'));
-
-//   userInfo.setUserInfo(document.querySelector('#inputUserNameEdit'), document.querySelector('#inputUserInfoEdit'));
-
-
-//   api.editProfile(userInfo.updateUserInfo().name, userInfo.updateUserInfo().about)
-//   .then ((data) => {
-//     userInfo.setUserInfo(data.name, data.about);
-
-//     document.querySelector('#userInfoName').textContent = userInfo.updateUserInfo().name;
-//     document.querySelector('#userInfoJob').textContent = userInfo.updateUserInfo().about;
-//     editPopup.close();
-
-//   });
-// });
-
-
-// document.forms.new.addEventListener('submit', function (event) {
-//    event.preventDefault();
-//    loader.changeStatus(document.querySelector('#popupSubmit'));
-
-//   api.addCard(document.forms.new.elements.inputName.value, document.forms.new.elements.inputLink.value)
-//    .then((data) => {cardList.addCard(data.name, data.link, data.likes, true, data._id);
-//   popup.close();
-
-//   })
-
-// });
-
-
-// document.forms.editPhoto.addEventListener('submit', function (event) {
-//   event.preventDefault();
-//   loader.changeStatus(document.querySelector('#submitEditPhoto'));
-
-
-//   userInfo.setUserInfoAvatar(document.querySelector('#inputLinkPhoto').value);
-
-//   api.updateAvatar(userInfo.updateUserInfoAvatar().avatar)
-//   .then((data) => {
-//     userInfo.setUserInfoAvatar(data.avatar);
-
-
-//     document.querySelector('#userInfoPic').setAttribute('style', ` background-image: url("${userInfo.updateUserInfoAvatar().avatar}")`);
-//     popupPhoto.close();
-//   });
-// });
-
-// }());
-
-
-

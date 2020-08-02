@@ -1,7 +1,8 @@
+import { BaseComponent } from "./BaseComponent";
 
-
-export class NewsCard {
+export class NewsCard extends BaseComponent{
   constructor(keyword, cardName, cardImage, cardDescription, cardPublishedAt,cardSourceName, newsUrl, saved) {
+    super();
     this.keyword = keyword;
     this.cardName = cardName;
     this.cardImage = cardImage;
@@ -24,10 +25,12 @@ export class NewsCard {
           }
           savee(keyword, elem.title, elem.urlToImage, elem.description, elem.publishedAt, elem.source.name, elem.url)
           .then(data => {
+            if (data){
             event.target.classList.add('news-card__icon_saved')
             event.target.parentElement.querySelector('.news-card__pop-up-line').textContent='Сохранено';
+            }
           })
-          .catch(err => console.log(err));
+          .catch(err => {console.log(err); return err});
       }
   })
     }
@@ -37,17 +40,15 @@ export class NewsCard {
   remove(event, data, remover) {
     if (event.target.classList.contains('news-card__icon_articles')) {
         const card = event.target.closest('.news-card');
-
-         data.filter(function(elem){
-          if(elem.link === card.href){
-        remover(elem._id)
-        .then(document.querySelector('#card-zone').removeChild(card))
-        .catch(err => {return err})
-          }else{
-            return false;
-          }
-        })
-
+        data.filter(function(elem){
+        if(elem.link === card.href){
+      remover(elem._id)
+      .then(data => {if (data) {document.querySelector('#card-zone').removeChild(card)}})
+      .catch(err => {console.log(err); return err})
+        }else{
+          return false;
+        }
+      })
     }
   }
 

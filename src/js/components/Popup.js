@@ -1,5 +1,8 @@
-export class Popup {
+import { BaseComponent } from "./BaseComponent";
+
+export class Popup extends BaseComponent{
   constructor(elem) {
+    super();
     this.elem = elem;
   }
   _patterns(popup){

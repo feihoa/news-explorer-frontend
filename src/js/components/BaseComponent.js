@@ -1,5 +1,5 @@
 export class BaseComponent{
-constructor(elem){
-  this.elem  = elem;
+constructor(props){
+  this.props  = props;
 }
 }
