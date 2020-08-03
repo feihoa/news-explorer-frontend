@@ -16,7 +16,7 @@ export default function logout(){
    { header.render({
       isLoggedIn: false,
      })
-     window.location.href = ('/index.html');
+     window.location.pathname = window.location.pathname.replace('articles.html', 'index.html');
 
      return data;
 

@@ -63,11 +63,11 @@ export class NewsCard extends BaseComponent{
     let icon =  ` <button onclick="event.preventDefault()" class="button news-card__save-icon news-card__icon news-card__icon_index">
     </button>`;
     let popupLine = ``;
-
+    console.log(window.location.pathname.includes('/articles.html'))
     if(!((/^https?:\/\/.*\.(?:jpe?g|gif|png)$/gi).test(cardImageValue))){
       cardImageValue = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
    }
-    if(window.location.pathname === '../articles.html'){
+    if(window.location.pathname.includes('/articles.html')){
       key =  `<span  id="keyWord" class="text news-card__key-word">${ this._sanitizeHTML(keyword)}</span>`
       popupLine = `<span class="text news-card__pop-up-line">Убрать из сохраненных</span>`;
       icon = `<button onclick="event.preventDefault()" class="button news-card__icon news-card__save-icon news-card__icon_articles">

@@ -33,6 +33,7 @@ import {
   popupSuccess
 } from '../../js/constants/popup.js';
 
+
 const header = new Header();
 const mobileMenu = new MobileMenu();
 const popup = new Popup(document.querySelector('#popup'));
@@ -287,7 +288,7 @@ linkAuth.addEventListener("click", function () {
 });
 menuIconLines.addEventListener("click", handleMenuIconLinesClick);
 buttonLogout.addEventListener('click', handleLogout, {once:true});
-document.forms.search.addEventListener("submit", handleSearch);
+document.querySelector('.search__search-field').addEventListener("submit", handleSearch);
 
 
 

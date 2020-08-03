@@ -19,7 +19,7 @@ return mainApi.getUserData()
  isLoggedIn: true,
  name: data.data.name
 })
-if(window.location.pathname === '/articles.html'){
+if(window.location.pathname.includes('/articles.html')){
 document.querySelector('#user-name').textContent = data.data.name;
 document.querySelector('#user-name-a').textContent = data.data.name;
 }
@@ -28,8 +28,8 @@ document.querySelector('#user-name-a').textContent = data.data.name;
 })
 .catch(err =>
  {
- if(window.location.pathname === '/articles.html'){
-  window.location.href="index.html"}
+ if(window.location.pathname.includes('/articles.html')){
+  window.location.pathname = window.location.pathname.replace('articles.html', 'index.html')}
  console.log(err)
  return false;
 })

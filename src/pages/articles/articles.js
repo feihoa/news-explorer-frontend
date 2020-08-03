@@ -32,7 +32,6 @@ let keywords = [];
  getUserData()
  }
  checkAuth()
-
  const handleMenuIconLinesClick = () =>{
   document.querySelector('#two-lines').classList.toggle("change");
     mobileMenu.toggle(headerElem, 'header_menu-mobile-opened');
