@@ -71,13 +71,13 @@ function getMainArticlesInfo(){
     keywords = unique(keywords)
     keywordsElem.textContent = ''
 
-    if(data.data.length > 4 || String(data.data.length).slice(-1)  > 4){
+    if(data.data.length > 4 && data.data.length < 21 || String(data.data.length).slice(-1)  > 4){
       articlesNumber.textContent = `${data.data.length} сохраненных статей`;
 
     }else if(data.data.length > 1 && data.data.length < 5 || String(data.data.length).slice(-1) > 1 && String(data.data.length).slice(-1) < 5){
       articlesNumber.textContent = `${data.data.length} сохраненные статьи`;
 
-    }else if(data.data.length === 1 || String(data.data.length).slice(-1) === 1){
+    }else if(data.data.length == 1 || String(data.data.length).slice(-1) == 1){
       articlesNumber.textContent = `${data.data.length} сохраненная статья`;
     }else{
         articlesNumber.textContent = `${data.data.length} сохраненных статей`;

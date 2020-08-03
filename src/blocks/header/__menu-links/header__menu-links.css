@@ -12,7 +12,7 @@
   .header__menu-links{
 
     padding: 0 16px 0 16px;
-    width: calc(100vw - 42.8px);
+    width: calc(100vw - 25.8px);
     margin: 0;
     margin-left: -139px;
     flex-direction: column;
