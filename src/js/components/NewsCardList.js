@@ -31,16 +31,16 @@ console.log(data)
     }
   }
   cardPopupLineText(isLogged){
-    const popupLine = Array.prototype.slice.call(document.querySelectorAll('.news-card__pop-up-line'));
-    if(popupLine){
+    const popupLines = Array.prototype.slice.call(document.querySelectorAll('.news-card__pop-up-line'));
+    if(popupLines){
 
     if(isLogged){
-      popupLine.forEach(elem => {
+      popupLines.forEach(elem => {
     elem.textContent = "Сохранить";
       });
   return true;
     }else{
-      popupLine.forEach(elem => {
+      popupLines.forEach(elem => {
         elem.textContent = "Войдите, чтобы сохранять статьи";
           });
 

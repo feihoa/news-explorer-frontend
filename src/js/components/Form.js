@@ -39,15 +39,33 @@ export class Form extends BaseComponent{
       this.errorMessage = '';
     }
   }
-  inputBlock(){
-    document.getElementsByTagName('input').forEach(elem => {
+  formBlock(){
+    document.querySelectorAll('input').forEach(elem => {
       elem.setAttribute("disabled", "true");
-    })
+    });
+
+    function setAttrDisabled(button){
+      if(button){
+        button.setAttribute("disabled", "");
+      }
+    }
+    setAttrDisabled(document.querySelector('#button-submit'));
+    setAttrDisabled(document.querySelector('#find-news-button'));
   }
-  inputUnblock(){
-    document.getElementsByTagName('input').forEach(elem => {
-      elem.removeAttribute("disabled", "false");
-    })
+
+
+  formUnblock(){
+    document.querySelectorAll('input').forEach(elem => {
+      elem.removeAttribute("disabled", "true");
+    });
+
+    function removeAttrDisabled(button){
+      if(button){
+        button.removeAttribute("disabled", "");
+      }
+    }
+    removeAttrDisabled(document.querySelector('#button-submit'));
+    removeAttrDisabled(document.querySelector('#find-news-button'));
   }
 
   setServerError(elem, err){
@@ -95,9 +113,9 @@ export class Form extends BaseComponent{
   _validateForm(button){
     this.button = button;
 
-    let array = [];
-    let inputArray = (Array.from(document.forms.popupForm.querySelectorAll('input')));
-    inputArray.forEach(elem => array.push(elem.value));
+    const array = [];
+    (Array.from(document.forms.popupForm.querySelectorAll('input')))
+    .forEach(elem => array.push(elem.value));
 
     if( array.every(elem => elem.length > 1 && elem.length < 31) && this._isEmail(array[0]) && array[1].length >= 8){
       button.removeAttribute('disabled')
@@ -115,11 +133,11 @@ export class Form extends BaseComponent{
   searchFormError(value){
     if (!value){
     alert('Пустой запрос');
-    this.inputUnblock();
+    this.formUnblock();
     return true;
   }else if(value.length === 1){
     alert('Недостаточная длина запроса');
-    this.inputUnblock();
+    this.formUnblock();
     return true;
   }else{
     return false;

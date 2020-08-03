@@ -25,12 +25,13 @@ export class NewsCard extends BaseComponent{
           }
           savee(keyword, elem.title, elem.urlToImage, elem.description, elem.publishedAt, elem.source.name, elem.url)
           .then(data => {
-            if (data){
+            if (data && data != 'TypeError: Failed to fetch'){
+              console.log(data)
             event.target.classList.add('news-card__icon_saved')
             event.target.parentElement.querySelector('.news-card__pop-up-line').textContent='Сохранено';
             }
           })
-          .catch(err => {console.log(err); return err});
+          .catch(err => {console.log(err); if(err == "TypeError: Failed to fetch"){alert(err)} return err});
       }
   })
     }
@@ -44,14 +45,18 @@ export class NewsCard extends BaseComponent{
         if(elem.link === card.href){
       remover(elem._id)
       .then(data => {if (data && data != 'TypeError: Failed to fetch') {document.querySelector('#card-zone').removeChild(card)}})
-      .catch(err => {alert(err); return err})
-        }else{
+      .catch(err => {console.log(err); if(err == "TypeError: Failed to fetch"){alert(err)} return err});
+      }else{
           return false;
         }
       })
     }
   }
-
+  _sanitizeHTML (str) {
+    var temp = document.createElement('div');
+    temp.textContent = str;
+    return temp.innerHTML;
+  };
 
   create(keyword, cardNameValue, cardDescriptionValue, cardImageValue, cardPublishedAtValue, cardSourceNameValue, newsUrl, saved) {
     let key = '';
@@ -62,8 +67,8 @@ export class NewsCard extends BaseComponent{
     if(!((/^https?:\/\/.*\.(?:jpe?g|gif|png)$/gi).test(cardImageValue))){
       cardImageValue = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
    }
-    if(window.location.pathname === '/articles.html'){
-      key =  `<span  id="keyWord" class="text news-card__key-word">${keyword}</span>`
+    if(window.location.pathname === '../articles.html'){
+      key =  `<span  id="keyWord" class="text news-card__key-word">${ this._sanitizeHTML(keyword)}</span>`
       popupLine = `<span class="text news-card__pop-up-line">Убрать из сохраненных</span>`;
       icon = `<button onclick="event.preventDefault()" class="button news-card__icon news-card__save-icon news-card__icon_articles">
     </button>`
@@ -75,18 +80,18 @@ export class NewsCard extends BaseComponent{
       icon = `<button onclick="event.preventDefault()" class="button news-card__icon news-card__save-icon news-card__icon_index news-card__icon_saved">`;
       popupLine = `<span class="text news-card__pop-up-line">Сoхранено</span>`
     }
-  return   ` <a class="news-card" target="_blank" href="${newsUrl}">
-  <div class="news-card__image" style="background-image: url(${cardImageValue})">
+  return   ` <a class="news-card" target="_blank" href="${this._sanitizeHTML(newsUrl)}">
+  <div class="news-card__image" style="background-image: url(${this._sanitizeHTML(cardImageValue)})">
       ${key}
       ${icon}
       ${popupLine}
   </div>
   <div class="news-card__content">
-    <p class="news-card__date" >${cardPublishedAtValue}</p>
-    <h3 class="title news-card__name">${cardNameValue}</h3>
-    <p class="text text_black news-card__text">${cardDescriptionValue}</p>
+    <p class="news-card__date" >${this._sanitizeHTML(cardPublishedAtValue)}</p>
+    <h3 class="title news-card__name">${this._sanitizeHTML(cardNameValue)}</h3>
+    <p class="text text_black news-card__text">${this._sanitizeHTML(cardDescriptionValue)}</p>
   </div>
-  <p class="title news-card__source">${cardSourceNameValue}</p>
+  <p class="title news-card__source">${this._sanitizeHTML(cardSourceNameValue)}</p>
 </a>
 `
   }

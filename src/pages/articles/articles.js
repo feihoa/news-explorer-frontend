@@ -33,7 +33,7 @@ let keywords = [];
  }
  checkAuth()
 
-document.querySelector('#two-lines').addEventListener("click", function () {
+ const handleMenuIconLinesClick = () =>{
   document.querySelector('#two-lines').classList.toggle("change");
     mobileMenu.toggle(headerElem, 'header_menu-mobile-opened');
     mobileMenu.toggle(logo, 'logo_black');
@@ -44,25 +44,23 @@ document.querySelector('#two-lines').addEventListener("click", function () {
     mobileMenu.toggle(buttonLogout, 'text_white');
     mobileMenu.toggle(barOne, 'two-lines__bar_white');
     mobileMenu.toggle(barTwo, 'two-lines__bar_white');
-
-});
-
-document.querySelector('#button-logout').addEventListener('click', function(e){
+}
+const handleLogout = (e) =>{
   e.preventDefault();
 logout()
 .then(data =>{
- if(data){
-   isLogged = false;
- }else{
-   isLogged = true;
- }
-}).catch(err =>  {
-  isLogged = true;
-  console.log(err);
-   return err;
- })
-}, {once:true});
+if(data){
+ isLogged = false;
+}else{
+ isLogged = true;
+}
+}).catch(err =>  {return err;
+})
+};
 
+
+document.querySelector('#two-lines').addEventListener("click", handleMenuIconLinesClick);
+document.querySelector('#button-logout').addEventListener('click', handleLogout, {once:true});
 
 
 function getMainArticlesInfo(){
@@ -100,9 +98,9 @@ function getMainArticlesInfo(){
     }
     return data;
 })
-
 .catch(err => {console.log(err); return err;})
 }
+
 getMainArticlesInfo()
 .then(data => {
   if(data && data != 'TypeError: Failed to fetch'){

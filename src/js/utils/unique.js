@@ -1,5 +1,5 @@
 export default function unique(arr) {
-  let result = [];
+  const result = [];
 
   for (let str of arr) {
     if (!result.includes(str)) {

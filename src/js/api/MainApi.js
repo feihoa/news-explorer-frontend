@@ -28,7 +28,7 @@ export class MainApi {
       .then((data) => {
         return data;
       })
-      .catch();
+      .catch(err => {throw err});
   }
 
   signin(email, password){
@@ -54,7 +54,7 @@ export class MainApi {
       .then((data) => {
         return data;
       })
-      .catch();
+      .catch(err => {throw err});
 
   }
 
@@ -77,7 +77,7 @@ export class MainApi {
       .then((data) => {
         return data;
       })
-      .catch();
+      .catch(err => {throw err});
   }
 
 
@@ -100,7 +100,7 @@ export class MainApi {
       .then((data) => {
         return data;
       })
-      .catch();
+      .catch(err => {throw err});
 
   }
 
@@ -139,8 +139,8 @@ export class MainApi {
         .then((data) => {
           return data;
         })
-        .catch();
-  };
+        .catch(err => {throw err});
+      };
 
 
   removeArticle(id){
@@ -163,8 +163,8 @@ export class MainApi {
         .then((data) => {
           return data;
         })
-        .catch();
-  }
+        .catch(err => {throw err});
+      }
 
   logout(){
     return  fetch(this.options.baseUrl + '/logout', {
@@ -185,7 +185,7 @@ export class MainApi {
       .then((data) => {
         return data;
       })
-      .catch();
+      .catch(err => {throw err});
 
   }
 
