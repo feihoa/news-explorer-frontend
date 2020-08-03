@@ -43,8 +43,8 @@ export class NewsCard extends BaseComponent{
         data.filter(function(elem){
         if(elem.link === card.href){
       remover(elem._id)
-      .then(data => {if (data) {document.querySelector('#card-zone').removeChild(card)}})
-      .catch(err => {console.log(err); return err})
+      .then(data => {if (data && data != 'TypeError: Failed to fetch') {document.querySelector('#card-zone').removeChild(card)}})
+      .catch(err => {alert(err); return err})
         }else{
           return false;
         }

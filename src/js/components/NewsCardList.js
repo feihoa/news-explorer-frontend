@@ -12,7 +12,7 @@ export class NewsCardList extends BaseComponent{
       this.container.insertAdjacentHTML('beforeend', this.newsCard.create(keyword, cardName, cardDescription, cardImage, cardPublishedAt, cardSourceName, newsUrl, saved));
   }
   listeners(data, func, key) {
-
+console.log(data)
     if(window.location.pathname === '/articles.html'){
       this.container.addEventListener('click', event => {
         this.newsCard.remove(event, data, func);

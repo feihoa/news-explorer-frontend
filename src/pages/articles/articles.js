@@ -105,9 +105,14 @@ function getMainArticlesInfo(){
 }
 getMainArticlesInfo()
 .then(data => {
+  if(data && data != 'TypeError: Failed to fetch'){
+    console.log(data)
 cardZone.textContent = '';
 newsCardList.render(data.data, dateFormatChange);
 newsCardList.listeners(data.data, removeCard);
+  }else{
+    alert('Нет соединения')
+  }
 })
 
 

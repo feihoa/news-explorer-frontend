@@ -56,7 +56,7 @@ export class Form extends BaseComponent{
       elem.textContent = 'Такой пользователь уже есть';
      }else if(err === '429'){
       elem.textContent = 'Слишком много запросов';
-     }else if(err === 'TypeError: Failed to fetch'){
+     }else if(err == 'TypeError: Failed to fetch'){
       elem.textContent = 'Отсутствует соединение с интернетом';
      }else if (err === '400'){
       elem.textContent = 'Некорректный запрос';
