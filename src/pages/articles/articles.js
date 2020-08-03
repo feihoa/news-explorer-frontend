@@ -109,12 +109,8 @@ getMainArticlesInfo()
 cardZone.textContent = '';
 newsCardList.render(data.data, dateFormatChange);
 newsCardList.listeners(data.data, removeCard);
-  }else{
-    alert('Нет соединения')
   }
 })
-
-
 
 function removeCard(id){
  return mainApi.removeArticle(id)

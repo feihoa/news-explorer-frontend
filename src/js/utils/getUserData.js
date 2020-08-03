@@ -29,8 +29,7 @@ document.querySelector('#user-name-a').textContent = data.data.name;
 .catch(err =>
  {
  if(window.location.pathname === '/articles.html'){
-   window.location.replace('../index.html');
- }
+  window.location.href="index.html"}
  console.log(err)
  return false;
 })
