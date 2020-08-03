@@ -226,7 +226,7 @@ if(data){
   .then(data =>{
   return data;
   })
-  .catch(err => {console.log(err); return err;})
+  .catch(err => {console.log(err); throw err;})
  };
 
 function registration(){

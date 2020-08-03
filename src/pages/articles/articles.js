@@ -53,8 +53,7 @@ if(data){
 }else{
  isLogged = true;
 }
-}).catch(err =>  {return err;
-})
+}).catch(err =>  {return err;})
 };
 
 
@@ -97,7 +96,7 @@ function getMainArticlesInfo(){
     }
     return data;
 })
-.catch(err => {console.log(err); return err;})
+.catch(err => {throw err;})
 }
 
 getMainArticlesInfo()
@@ -107,14 +106,16 @@ cardZone.textContent = '';
 newsCardList.render(data.data, dateFormatChange);
 newsCardList.listeners(data.data, removeCard);
   }
-})
+}).catch(err => {console.log(err); return err;})
+
 
 function removeCard(id){
  return mainApi.removeArticle(id)
   .then(data =>{
-    getMainArticlesInfo();
+    getMainArticlesInfo()
+    .catch(err => {console.log(err); return err})
     return(data)
 
   })
-  .catch(err => {console.log(err); return err})
+  .catch(err => {console.log(err); throw err})
 }
