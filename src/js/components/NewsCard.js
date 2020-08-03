@@ -26,7 +26,6 @@ export class NewsCard extends BaseComponent{
           savee(keyword, elem.title, elem.urlToImage, elem.description, elem.publishedAt, elem.source.name, elem.url)
           .then(data => {
             if (data && data != 'TypeError: Failed to fetch'){
-              console.log(data)
             event.target.classList.add('news-card__icon_saved')
             event.target.parentElement.querySelector('.news-card__pop-up-line').textContent='Сохранено';
             }
@@ -53,7 +52,7 @@ export class NewsCard extends BaseComponent{
     }
   }
   _sanitizeHTML (str) {
-    var temp = document.createElement('div');
+    const temp = document.createElement('div');
     temp.textContent = str;
     return temp.innerHTML;
   };
@@ -63,7 +62,7 @@ export class NewsCard extends BaseComponent{
     let icon =  ` <button onclick="event.preventDefault()" class="button news-card__save-icon news-card__icon news-card__icon_index">
     </button>`;
     let popupLine = ``;
-    console.log(window.location.pathname.includes('/articles.html'))
+
     if(!((/^https?:\/\/.*\.(?:jpe?g|gif|png)$/gi).test(cardImageValue))){
       cardImageValue = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
    }
