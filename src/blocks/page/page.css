@@ -24,3 +24,7 @@
   flex-direction: column;
   justify-content: center;
 }
+
+*{
+  /* border: 1px solid red; */
+}

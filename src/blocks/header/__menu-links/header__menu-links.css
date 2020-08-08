@@ -8,9 +8,9 @@
 @media screen and (max-width: 670px) and (min-width: 320px) {
   .header__menu-links {
     padding: 0 16px 0 16px;
-    width: calc(100vw - 42px);
+    width: calc(100vw - 32px);
     margin: 0;
-    margin-left: -139px;
+    margin-left: -133px;
     flex-direction: column;
     align-items: flex-start;
     margin-top: 44px;
@@ -24,7 +24,7 @@
     padding: 0 16px 0 16px;
     width: 169%;
     margin: 0;
-    margin-left: -139px;
+    margin-left: -133px;
     flex-direction: column;
     align-items: flex-start;
     margin-top: 44px;
