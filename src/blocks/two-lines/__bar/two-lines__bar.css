@@ -3,13 +3,10 @@
 @import url(./_black/two-lines__bar_black.css);
 @import url(./_white/two-lines__bar_white.css);
 
-@media screen and (max-width: 600px){
-
-.two-lines__bar{
-  width: 16px;
-  height: 2px;
-  transition: .4s;
-
-
-}
+@media screen and (max-width: 670px) {
+  .two-lines__bar {
+    width: 16px;
+    height: 2px;
+    transition: 0.4s;
   }
+}

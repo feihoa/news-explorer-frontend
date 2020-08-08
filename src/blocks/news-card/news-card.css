@@ -6,31 +6,31 @@
 @import url(./__key-word/news-card__key-word.css);
 @import url(./__source/news-card__source.css);
 @import url(./__text/news-card__text.css);
-@import url(./__icon-svg/news-card__icon-svg.css);
 @import url(./__pop-up-line/news-card__pop-up-line.css);
 @import url(./__pop-up-line-hidden/news-card__pop-up-line-hidden.css);
 @import url(./__key-word_down/news-card__key-word_down.css);
 
-.news-card{
+.news-card {
   position: relative;
   background-color: #fff;
   border-radius: 10px;
   min-height: 576px;
 
-  cursor: url('../../images/lapka.png'), pointer;
+  cursor: url("../../images/lapka.png"), pointer;
 
   margin-bottom: 16px;
   margin-top: 24px;
   margin-right: 16px;
   width: 100%;
+  max-width: 400px;
 
-
+  text-decoration: none;
+  color: black;
 }
 
-.news-card:hover{
+.news-card:hover {
   box-shadow: 0 60px 58px -60px rgba(8, 29, 45, 0.1);
 }
-.news-card:nth-child(3){
+.news-card:nth-child(3) {
   margin-right: 0;
 }
-

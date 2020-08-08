@@ -1,10 +1,10 @@
-.search__search-field{
+.search__search-field {
   position: relative;
 
-  background: #FFFFFF;
-  font-family: 'Roboto', sans-serif, Arial, Helvetica;
+  background: #ffffff;
+  font-family: "Roboto", sans-serif, Arial, Helvetica;
 
-  border: 1px solid #D1D2D6;
+  border: 1px solid #d1d2d6;
   box-sizing: border-box;
   /* backdrop-filter: blur(8px); */
   /* -webkit-backdrop-filter: blur(8px); */
@@ -20,18 +20,16 @@
   margin-bottom: 80px;
 
   max-height: 64px;
-
 }
 
-.search__search-field:focus-within{
-  border: 1.3px solid rgb(0, 0, 222, .3);
+.search__search-field:focus-within {
+  border: 1.3px solid rgb(0, 0, 222, 0.3);
   box-sizing: border-box;
+  max-height: 60px;
 }
 
-
-@media screen and (max-width: 600px){
-  .search__search-field{
+@media screen and (max-width: 600px) {
+  .search__search-field {
     display: block;
-
   }
 }

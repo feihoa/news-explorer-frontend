@@ -1,5 +1,4 @@
-
-.header__menu{
+.header__menu {
   display: flex;
 
   font-size: 18px;
@@ -8,23 +7,18 @@
   align-self: center;
   justify-self: center;
   list-style: none;
-
 }
 
-@media screen and (max-width: 800px){
-  .header__menu{
+@media screen and (max-width: 800px) {
+  .header__menu {
     font-size: 16px;
-
-
   }
 }
 
-
-    @media screen and (max-width: 600px){
-      .header__menu{
-        width: 100%;
-        margin-left: -15px;
-        position: relative;
-
-      }
-    }
+@media screen and (max-width: 670px) {
+  .header__menu {
+    width: 100%;
+    margin-left: -15px;
+    position: relative;
+  }
+}

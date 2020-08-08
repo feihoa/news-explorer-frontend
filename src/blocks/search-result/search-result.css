@@ -3,11 +3,10 @@
 @import url(./__show-more-button/news-card__show-more-button.css);
 @import url(./_hidden/search-result_hidden.css);
 
-.search-result{
+.search-result {
   position: relative;
   padding-top: 80px;
-  background: #F5F6F7;
+  background: #f5f6f7;
   padding-bottom: 25px;
   width: 100%;
-
 }

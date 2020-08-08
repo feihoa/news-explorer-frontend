@@ -4,9 +4,7 @@
 @import url("./__input/search__input.css");
 @import url("./__button/search__button.css");
 
-
-
-.search{
+.search {
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -14,13 +12,11 @@
   justify-content: center;
 }
 
-
-@media screen and (max-width: 808px){
-  .search{
+@media screen and (max-width: 808px) {
+  .search {
     width: 95%;
     margin: auto;
     margin-top: 2%;
     margin-bottom: 2%;
   }
 }
-

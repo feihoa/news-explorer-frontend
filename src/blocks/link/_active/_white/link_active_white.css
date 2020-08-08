@@ -1,11 +1,9 @@
-.link_active_white{
+.link_active_white {
   border-bottom: 1px solid white;
 }
 
-@media screen and (max-width: 600px) {
-  .link_active_white{
+@media screen and (max-width: 670px) {
+  .link_active_white {
     border-bottom: none;
-
-
   }
 }

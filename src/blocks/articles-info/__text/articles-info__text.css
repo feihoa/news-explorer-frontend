@@ -1,20 +1,18 @@
-.articles-info__text{
-
+.articles-info__text {
   min-width: 180px;
   color: rgba(26, 27, 34, 0.5);
   width: calc(100% - 144px);
   margin: 40px auto 28px auto;
-
 }
 @media screen and (max-width: 800px) and (max-width: 601px) {
-  .articles-info__text{
+  .articles-info__text {
     font-size: 14px;
-    line-height: 24px;  }
-}
-
-@media screen and (max-width: 600px) {
-  .articles-info__text{
-    width: 100%;
+    line-height: 24px;
   }
 }
 
+@media screen and (max-width: 600px) {
+  .articles-info__text {
+    width: 100%;
+  }
+}

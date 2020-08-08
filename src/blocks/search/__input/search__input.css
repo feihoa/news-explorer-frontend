@@ -1,8 +1,8 @@
-.search__input{
+.search__input {
   font-size: 16px;
   line-height: 22px;
 
-  color: #B6BCBF;
+  color: #b6bcbf;
 
   display: inline-block;
   margin: 0px 40px 0px 24px;
@@ -21,8 +21,8 @@
   color: black;
 }
 
-@media screen and (max-width: 600px){
-  .search__input{
+@media screen and (max-width: 600px) {
+  .search__input {
     width: 80%;
     margin-right: 0;
   }

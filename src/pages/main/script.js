@@ -1,178 +1,366 @@
 import "./index.css";
-import "./../../js/index.js";
 
-import {MenuChange} from "./../../js/index.js";
+import { MobileMenu } from "../../js/components/MobileMenu.js";
+import { Form } from "../../js/components/Form";
+import { NewsApi } from "../../js/api/NewsApi.js";
+import { NewsCardList } from "../../js/components/NewsCardList";
+import { NewsCard } from "../../js/components/NewsCard.js";
+import { Popup } from "../../js/components/Popup";
+import weekAgo from "../../js/utils/weekAgo.js";
+import dateFormatChange from "../../js/utils/dateFormatChange.js";
+import listToMatrix from "../../js/utils/listToMatrix.js";
+import { Header } from "../../js/components/Header.js";
+import logout from "../../js/utils/logout.js";
+import getUserData from "../../js/utils/getUserData.js";
+import { mainApi } from "../../js/constants/mainApi.js";
+import {
+  showMoreButton,
+  buttonLogout,
+  searchResult,
+  notFound,
+  searchPreloader,
+  searchInput,
+  cardZone,
+  headerElem,
+  menuLinks,
+  menuIconLines,
+  linkAuth,
+} from "../../js/constants/main.js";
 
-document.querySelector('#two-lines').addEventListener("click", function () {
-  document.querySelector('#two-lines').classList.toggle("change");
-  MenuChange(document.querySelector('#header'), 'header_menu-mobile-opened');
-  MenuChange(document.querySelector('#headerMenuLinks'), 'header__menu-links-hidden');
+import {
+  popupLogIn,
+  popupRegistration,
+  popupSuccess,
+} from "../../js/constants/popup.js";
 
+const header = new Header();
+const mobileMenu = new MobileMenu();
+const popup = new Popup(document.querySelector("#popup"));
+const form = new Form(event);
+const newsCard = new NewsCard();
+const newsCardList = new NewsCardList(cardZone, newsCard);
+const currentDate = new Date();
+const dateAgo = weekAgo(currentDate);
+const elementsPerSubArray = 3;
+
+let isLogged = "";
+let keyWord;
+let cardMatrixLine = 0;
+let saved;
+
+if (window.location.pathname.includes("/index.html")) {
+  window.location.pathname = window.location.pathname.replace(
+    "/index.html",
+    ""
+  );
+}
+const handleLogout = (e) => {
+  e.preventDefault();
+  logout()
+    .then((data) => {
+      if (data) {
+        isLogged = false;
+      } else {
+        isLogged = true;
+      }
+    })
+    .catch((err) => {
+      return err;
+    });
+};
+
+const handleMenuIconLinesClick = () => {
+  menuIconLines.classList.toggle("change");
+  mobileMenu.toggle(headerElem, "header_menu-mobile-opened");
+  mobileMenu.toggle(menuLinks, "header__menu-links-hidden");
+};
+
+const showCards = (cards) => {
+  mainApi
+    .getArticles()
+    .then((data) => {
+      saved = [];
+      data.data.forEach((elem) => {
+        saved.push(elem.link);
+      });
+      newsCardList.render(
+        cards[cardMatrixLine++],
+        dateFormatChange,
+        keyWord,
+        saved
+      );
+      searchPreloader.classList.add("search-preloader_hidden");
+      searchResult.classList.remove("search-result_hidden");
+      form.formUnblock();
+    })
+    .catch((err) => {
+      newsCardList.render(
+        cards[cardMatrixLine++],
+        dateFormatChange,
+        keyWord,
+        saved
+      );
+      searchPreloader.classList.add("search-preloader_hidden");
+      searchResult.classList.remove("search-result_hidden");
+      console.log(err);
+      form.formUnblock();
+      return err;
+    });
+  if (cardMatrixLine < cards.length) {
+    showMoreButton.onclick = function () {
+      showCards(cards);
+    };
+  } else {
+    showMoreButton.classList.add("news-card__show-more-button_hidden");
+  }
+};
+
+const handlePopupSubmitAuth = (e) => {
+  e.preventDefault();
+  form.formBlock();
+  mainApi
+    .signin(
+      document.querySelector("#input-email").value.toLowerCase(),
+      document.querySelector("#input-password").value
+    )
+    .then((data) => {
+      if (data) {
+        header.render({
+          isLoggedIn: true,
+          name: data.data.name,
+        });
+        isLogged = true;
+        cardZone.textContent = "";
+        searchResult.classList.add("search-result_hidden");
+        document
+          .querySelector(".search-preloader")
+          .classList.add("search-preloader_hidden");
+        popup.close();
+        form.formUnblock();
+      }
+    })
+    .catch((err) => {
+      form.setServerError(document.querySelector(".error_bottom"), err);
+      form.formUnblock();
+      isLogged = false;
+      return err;
+    });
+};
+const handlePopupSubmitRegistration = (e) => {
+  e.preventDefault();
+  form.formBlock();
+
+  mainApi
+    .signup(
+      document.querySelector("#input-email").value.toLowerCase(),
+      document.querySelector("#input-password").value,
+      document.querySelector("#input-name").value
+    )
+    .then((data) => {
+      if (data) {
+        success();
+        form.formUnblock();
+      }
+    })
+    .catch((err) => {
+      form.setServerError(document.querySelector(".error_bottom"), err);
+      form.formUnblock();
+      return err;
+    });
+};
+
+const handleRegistrationClick = (e) => {
+  e.preventDefault();
+
+  popup.close();
+  popup.clearContent();
+  popup.setContent(popupRegistration);
+  popup.open();
+  form.listeners();
+
+  document.forms.popupForm.addEventListener(
+    "submit",
+    handlePopupSubmitRegistration
+  );
+  closePopup();
+  popupAuth();
+};
+
+const handleSearch = (event) => {
+  event.preventDefault();
+  form.formBlock();
+  if (!form.searchFormError(searchInput.value)) {
+    searchResult.classList.add("search-result_hidden");
+    notFound.classList.add("not-found_hidden");
+    showMoreButton.classList.remove("news-card__show-more-button_hidden");
+    searchPreloader.classList.remove("search-preloader_hidden");
+
+    keyWord = searchInput.value;
+
+    const URL =
+      "everything?" +
+      `q=${keyWord}&` +
+      `from=${dateAgo.replace(/T.*Z/, "")}&` +
+      "language=ru&" +
+      "sortBy=popularity&" +
+      "pageSize=100&" +
+      "apiKey=5dc7761c8286400eb78ab29e37682fec";
+
+    console.log(URL);
+
+    const newsApi = new NewsApi({
+      baseUrl: `https://praktikum.tk/news/v2/` + URL,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    newsApi
+      .getNews()
+      .then((data) => {
+        cardZone.textContent = "";
+        cardMatrixLine = 0;
+        if (data.articles.length === 0) {
+          searchResult.classList.add("search-result_hidden");
+          searchPreloader.classList.add("search-preloader_hidden");
+          notFound.classList.remove("not-found_hidden");
+          form.formUnblock();
+        } else {
+          const matrix = listToMatrix(data.articles, elementsPerSubArray);
+          showCards(matrix);
+          if (isLogged) {
+            newsCardList.listeners(data.articles, saveCard, keyWord);
+            newsCardList.cardPopupLineText(true);
+          } else {
+            newsCardList.cardPopupLineText(false);
+          }
+        }
+      })
+      .catch((err) => {
+        if (err == "TypeError: Failed to fetch") {
+          alert("Нет соединения с сервером");
+          form.formUnblock();
+        }
+        console.log(err);
+        return err;
+      });
+  }
+};
+
+function checkAuth() {
+  getUserData()
+    .then((data) => {
+      if (data) {
+        isLogged = true;
+      } else {
+        isLogged = false;
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      return err;
+    });
+}
+checkAuth();
+
+function saveCard(
+  keyword,
+  cardName,
+  cardImage,
+  cardDescription,
+  cardPublishedAt,
+  cardSourceName,
+  newsUrl
+) {
+  return mainApi
+    .createArticle(
+      keyword,
+      cardName,
+      cardImage,
+      cardDescription,
+      cardPublishedAt,
+      cardSourceName,
+      newsUrl
+    )
+    .then((data) => {
+      return data;
+    })
+    .catch((err) => {
+      console.log(err);
+      throw err;
+    });
+}
+
+function registration() {
+  document
+    .querySelector("#registration")
+    .addEventListener("click", handleRegistrationClick, { once: true });
+}
+
+function auth() {
+  popup.close();
+  popup.clearContent();
+  popup.setContent(popupLogIn);
+  popup.open();
+  form.listeners();
+  document.forms.popupForm.addEventListener("submit", handlePopupSubmitAuth);
+  registration();
+  closePopup();
+}
+
+function closePopup() {
+  document.querySelector("#close-popup").addEventListener(
+    "click",
+    function () {
+      popup.close();
+      popup.clearContent();
+    },
+    { once: true }
+  );
+
+  document.addEventListener("click", function () {
+    const popupContent = document.querySelector("#popup__content");
+    if (
+      document.querySelector("#popup").contains(event.target) &&
+      (popupContent === null || !popupContent.contains(event.target))
+    ) {
+      popup.close();
+      popup.clearContent();
+    }
+  });
+
+  document.addEventListener("keyup", function (e) {
+    if (e.keyCode === 27) {
+      popup.close();
+      popup.clearContent();
+    }
+  });
+}
+
+function popupAuth() {
+  document.querySelector("#log-in").addEventListener(
+    "click",
+    function () {
+      auth();
+    },
+    { once: true }
+  );
+}
+
+function success() {
+  popup.close();
+  popup.clearContent();
+  popup.setContent(popupSuccess);
+  popup.open();
+  popupAuth();
+  closePopup();
+}
+
+linkAuth.addEventListener("click", function () {
+  auth();
 });
-
-// import {Api} from "./js/Api.js";
-// import {Card} from "./js/Card.js";
-// import {CardList} from "./js/CardList.js";
-// import {EditPopup} from "./js/EditPopup.js";
-// import {FormValidator} from "./js/FormValidator.js";
-// import {Loader} from "./js/Loader.js";
-// import {PicPopup} from "./js/PicPopup.js";
-// import {Popup} from "./js/Popup.js";
-// import {UserInfo} from "./js/UserInfo.js";
-
-
-// export const mainFunc = (function ()  {
-
-//   const api = new Api({
-//     baseUrl: NODE_ENV === 'development' ? 'http://praktikum.tk/cohort9' : 'https://praktikum.tk/cohort9',
-//     headers: {
-//       authorization: '548c5797-a590-40d0-8f9e-48d758ca9ae7',
-//       'Content-Type': 'application/json'
-//     }
-//   });
-
-// const card = new Card();
-// const popup = new Popup(document.querySelector('#formCard'));
-// const popupPhoto = new Popup(document.querySelector('#photoEdit'));
-
-// const picPopup = new PicPopup(document.querySelector('#popupPic'));
-
-// const validator = new FormValidator(event);
-// const editPopup = new EditPopup(document.querySelector('#formEdit'));
-// const cardList = new CardList(document.querySelector('.places-list'), card);
-// const userInfo =  new UserInfo();
-// const loader = new Loader();
-
-
-// api.getUserInfo()
-// .then ((data) => {
-
-//   userInfo.setUserInfo(data.name, data.about);
-//   userInfo.setUserInfoAvatar(data.avatar);
-
-
-//   document.querySelector('#userInfoName').textContent = userInfo.updateUserInfo().name;
-//   document.querySelector('#userInfoJob').textContent = userInfo.updateUserInfo().about;
-//   document.querySelector('#userInfoPic').setAttribute('style', ` background-image: url("${userInfo.updateUserInfoAvatar().avatar}")`);
-
-// })
-
-// api.getInitialCards()
-// .then((data) => {
-//   cardList.render(data)
-// });
-
-
-
-// cardList.listeners(api);
-
-
-
-
-// document.querySelector('#userInfoButton').addEventListener("click", function () {
-//   loader.changeStatusBack(document.querySelector('#submitEdit'));
-
-//   validator.resetPrevious();
-//   popup.open();
-//   validator.listeners();
-
-// });
-
-
-
-// document.querySelector('#userInfoPic').addEventListener("click", function () {
-//   loader.changeStatusBack(document.querySelector('#submitEditPhoto'));
-
-//   validator.resetPrevious();
-
-//   popupPhoto.open();
-//   validator.listeners();
-// });
-
-// document.querySelector('#placesList').addEventListener('click', function () {
-//   picPopup.popupPicHandler(event);
-// });
-
-// document.querySelector('#userInfoEditButton').addEventListener("click", function () {
-//   loader.changeStatusBack(document.querySelector('#submitEdit'));
-
-//   editPopup.setCurrentValue(userInfo.updateUserInfo().name, userInfo.updateUserInfo().about);
-//   editPopup.open();
-//   validator.listeners();
-
-// });
-
-
-
-// document.querySelector('#popupCloseCard').addEventListener("click", function () {
-//   popup.close()
-// });
-
-// document.querySelector('#closeEditPhoto').addEventListener("click", function () {
-//   popupPhoto.close()
-// });
-
-// document.querySelector('#popupClosePic').addEventListener("click", function () {
-//   picPopup.close();
-// });
-
-// document.querySelector('#closeEdit').addEventListener("click", function () {
-//    editPopup.close()
-// });
-
-
-
-// document.forms.edit.addEventListener("submit", function (event) {
-//   event.preventDefault();
-
-//   loader.changeStatus(document.querySelector('#submitEdit'));
-
-//   userInfo.setUserInfo(document.querySelector('#inputUserNameEdit'), document.querySelector('#inputUserInfoEdit'));
-
-
-//   api.editProfile(userInfo.updateUserInfo().name, userInfo.updateUserInfo().about)
-//   .then ((data) => {
-//     userInfo.setUserInfo(data.name, data.about);
-
-//     document.querySelector('#userInfoName').textContent = userInfo.updateUserInfo().name;
-//     document.querySelector('#userInfoJob').textContent = userInfo.updateUserInfo().about;
-//     editPopup.close();
-
-//   });
-// });
-
-
-// document.forms.new.addEventListener('submit', function (event) {
-//    event.preventDefault();
-//    loader.changeStatus(document.querySelector('#popupSubmit'));
-
-//   api.addCard(document.forms.new.elements.inputName.value, document.forms.new.elements.inputLink.value)
-//    .then((data) => {cardList.addCard(data.name, data.link, data.likes, true, data._id);
-//   popup.close();
-
-//   })
-
-// });
-
-
-// document.forms.editPhoto.addEventListener('submit', function (event) {
-//   event.preventDefault();
-//   loader.changeStatus(document.querySelector('#submitEditPhoto'));
-
-
-//   userInfo.setUserInfoAvatar(document.querySelector('#inputLinkPhoto').value);
-
-//   api.updateAvatar(userInfo.updateUserInfoAvatar().avatar)
-//   .then((data) => {
-//     userInfo.setUserInfoAvatar(data.avatar);
-
-
-//     document.querySelector('#userInfoPic').setAttribute('style', ` background-image: url("${userInfo.updateUserInfoAvatar().avatar}")`);
-//     popupPhoto.close();
-//   });
-// });
-
-// }());
-
-
-
+menuIconLines.addEventListener("click", handleMenuIconLinesClick);
+buttonLogout.addEventListener("click", handleLogout, { once: true });
+document
+  .querySelector(".search__search-field")
+  .addEventListener("submit", handleSearch);

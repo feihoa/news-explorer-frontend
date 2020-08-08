@@ -1,7 +1,6 @@
-@media screen and (max-width: 600px){
-.header_menu-mobile-opened{
-  background-color: #1A1B22;
-  transition: .4s;
-
-}
+@media screen and (max-width: 670px) {
+  .header_menu-mobile-opened {
+    background-color: #1a1b22;
+    transition: 0.4s;
   }
+}
