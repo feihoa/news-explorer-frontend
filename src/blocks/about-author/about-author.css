@@ -3,27 +3,25 @@
 @import url("./__text/about-author__text.css");
 @import url("./__title/about-author__title.css");
 
-.about-author{
-background: white;
-display: flex;
-margin: 80px 40px 80px 0;
-justify-content: center;
+.about-author {
+  background: white;
+  display: flex;
+  margin: 80px 40px 80px 0;
+  justify-content: center;
 }
 
-@media screen and (max-width: 600px){
-  .about-author{
-width: calc(100% - 32px);
-
+@media screen and (max-width: 600px) {
+  .about-author {
+    width: calc(100% - 32px);
   }
 }
-@media screen and (max-width: 530px){
-  .about-author{
+@media screen and (max-width: 530px) {
+  .about-author {
     width: 95%;
     margin: auto;
     margin-top: 2%;
     margin-bottom: 2%;
     flex-direction: column;
     align-items: center;
-
   }
 }

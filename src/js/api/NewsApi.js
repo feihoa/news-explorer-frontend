@@ -4,23 +4,21 @@ export class NewsApi {
   }
 
   getNews() {
-    return  fetch( this.options.baseUrl, {
-        headers : this.options.headers,
-      })
-    .then((res) => {
+    return fetch(this.options.baseUrl, {
+      headers: this.options.headers,
+    })
+      .then((res) => {
         if (res.ok) {
           return res.json();
         }
 
-            return Promise.reject(` ${res.status}`);
+        return Promise.reject(` ${res.status}`);
       })
       .then((data) => {
         return data;
       })
       .catch((err) => {
         throw err;
-      })
-
+      });
   }
 }
-

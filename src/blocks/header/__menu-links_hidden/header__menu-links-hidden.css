@@ -1,5 +1,5 @@
-@media screen and (max-width: 670px){
-  .header__menu-links-hidden{
+@media screen and (max-width: 670px) {
+  .header__menu-links-hidden {
     display: none;
   }
 }

@@ -1,13 +1,10 @@
-.link_active_black{
-  color:black;
+.link_active_black {
+  color: black;
   border-bottom: 1px solid black;
-
 }
 
 @media screen and (max-width: 600px) {
-  .link_active_black{
+  .link_active_black {
     border-bottom: none;
-
-
   }
 }

@@ -1,14 +1,15 @@
-.popup__form-text{
+.popup__form-text {
   margin: 0;
   margin-top: 16px;
   margin-bottom: 9px;
   font-size: 12px;
   line-height: 15px;
 
-  color: #2F71E5;
+  color: #2f71e5;
 }
 @media screen and (max-width: 500px) {
-  .popup__form-text{
+  .popup__form-text {
     margin-top: 9px;
-    margin-bottom: 2px;  }
+    margin-bottom: 2px;
+  }
 }

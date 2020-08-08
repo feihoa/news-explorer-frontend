@@ -1,15 +1,11 @@
-.header__link-saved{
-
+.header__link-saved {
   margin-right: 32px;
   min-width: 180px;
-  color: #B6BCBF;
-
-
-
+  color: #b6bcbf;
 }
 
 @media screen and (max-width: 670px) {
-  .header__link-saved{
+  .header__link-saved {
     margin-bottom: 10px;
     font-size: 18px;
     line-height: 311%;

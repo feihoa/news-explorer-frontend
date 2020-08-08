@@ -1,4 +1,4 @@
-.search-result__card-zone{
+.search-result__card-zone {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(331px, 1fr));
   grid-gap: 16px 16px;
@@ -6,32 +6,29 @@
   max-width: 1440px;
   margin: auto;
   width: calc(100% - 144px);
-
 }
 
- @media screen and (min-width: 1441px) {
-  .search-result__card-zone{
-  grid-template-columns: repeat(auto-fit, minmax(390px, 1fr));
+@media screen and (min-width: 1441px) {
+  .search-result__card-zone {
+    grid-template-columns: repeat(auto-fit, minmax(390px, 1fr));
   }
 }
 
- @media screen and (max-width: 1168px) and (min-width: 911px){
-  .search-result__card-zone{
-  grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+@media screen and (max-width: 1168px) and (min-width: 911px) {
+  .search-result__card-zone {
+    grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
   }
 }
- @media screen and (max-width: 910px) and (min-width: 822px){
-  .search-result__card-zone{
-  width: calc(100% - 32px);
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  }
-}
-
- @media screen and (max-width: 821px) {
-  .search-result__card-zone{
+@media screen and (max-width: 910px) and (min-width: 822px) {
+  .search-result__card-zone {
     width: calc(100% - 32px);
-  grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   }
 }
 
-
+@media screen and (max-width: 821px) {
+  .search-result__card-zone {
+    width: calc(100% - 32px);
+    grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
+  }
+}

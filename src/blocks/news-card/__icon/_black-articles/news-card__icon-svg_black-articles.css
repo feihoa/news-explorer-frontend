@@ -1,7 +1,4 @@
-
-
-.news-card__icon-svg_black-articles:hover .card-svg{
+.news-card__icon-svg_black-articles:hover .card-svg {
   stroke: none;
-  fill:#1A1B22;
+  fill: #1a1b22;
 }
-

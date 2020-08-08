@@ -10,10 +10,8 @@
 @media screen and (max-width: 1024px) {
   .popup__content {
     top: 65px;
-
   }
 }
-
 
 @media screen and (max-width: 600px) {
   .popup__content {
@@ -21,7 +19,6 @@
     height: 100%;
     padding-top: 0px;
     border-radius: 16px 16px 0 0;
-
   }
 }
 

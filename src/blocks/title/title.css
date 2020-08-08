@@ -1,29 +1,27 @@
-.title{
-  font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
+.title {
+  font-family: "Roboto Slab", Arial, Helvetica, sans-serif;
 
   font-size: 40px;
   line-height: 115%;
-
 }
 
-
-
-
-
- @media screen and (max-width: 1017px) and (min-width: 768px){
-  .title{
+@media screen and (max-width: 1017px) and (min-width: 768px) {
+  .title {
     font-size: 30px;
-    line-height: 113%;  }
+    line-height: 113%;
+  }
 }
 
-@media screen and (max-width: 767px) and (min-width: 320px){
-  .title{
+@media screen and (max-width: 767px) and (min-width: 320px) {
+  .title {
     font-size: 36px;
-    line-height: 111%; }
+    line-height: 111%;
+  }
 }
 
-@media screen and (max-width: 321px){
-  .title{
+@media screen and (max-width: 321px) {
+  .title {
     font-size: 30px;
-    line-height: 111%;  }
+    line-height: 111%;
+  }
 }

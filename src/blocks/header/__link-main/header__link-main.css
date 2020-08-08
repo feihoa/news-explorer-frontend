@@ -1,13 +1,12 @@
-.header__link-main{
+.header__link-main {
   margin-top: 10px;
 
   margin: 0;
   margin-right: 32px;
-
 }
 
 @media screen and (max-width: 670px) {
-  .header__link-main{
+  .header__link-main {
     margin-top: 10px;
     font-size: 18px;
     line-height: 311%;

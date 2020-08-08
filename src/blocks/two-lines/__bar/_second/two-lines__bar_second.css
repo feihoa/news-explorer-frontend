@@ -1,5 +1,4 @@
-
-.change .two-lines__bar_second{
+.change .two-lines__bar_second {
   -webkit-transform: rotate(45deg) translate(0px, -4px);
   transform: rotate(45deg) translate(0px, -4px);
 }

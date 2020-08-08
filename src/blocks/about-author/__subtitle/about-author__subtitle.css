@@ -1,8 +1,7 @@
-.about-author__subtitle{
+.about-author__subtitle {
   margin: 0px;
   margin-bottom: 12px;
-
 }
-.about-author__subtitle:last-child{
+.about-author__subtitle:last-child {
   margin-bottom: 0px;
 }

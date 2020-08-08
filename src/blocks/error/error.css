@@ -1,9 +1,8 @@
 @import url(./_bottom/error_bottom.css);
-.error{
-  font-family: 'Inter', sans-serif, Arial, Helvetica;
+.error {
+  font-family: "Inter", sans-serif, Arial, Helvetica;
   font-size: 12px;
   line-height: 15px;
 
-  color: #FF0000;
-
+  color: #ff0000;
 }

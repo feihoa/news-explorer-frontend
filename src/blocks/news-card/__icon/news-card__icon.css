@@ -2,7 +2,7 @@
 @import url(./_black/news-card__icon-svg_black.css);
 @import url(./_black-articles/news-card__icon-svg_black-articles.css);
 
-.news-card__icon{
+.news-card__icon {
   border: none;
   position: absolute;
   top: 24px;
@@ -15,25 +15,22 @@
   width: 33px;
   height: 33px;
   background-color: white;
-
 }
 
-.news-card__icon:hover{
+.news-card__icon:hover {
   background: url(../../../images/bookmark_hover.svg) center no-repeat;
   background-color: white;
-
-
 }
-.news-card__icon_saved{
+.news-card__icon_saved {
   background: url(../../../images/bookmark_blue.svg) center no-repeat;
   background-color: white;
 }
-.news-card__icon_saved:hover{
+.news-card__icon_saved:hover {
   background: url(../../../images/bookmark_blue.svg) center no-repeat;
   background-color: white;
 }
 
-.news-card__icon_articles{
+.news-card__icon_articles {
   border: none;
   position: absolute;
   top: 24px;
@@ -46,10 +43,8 @@
   height: 33px;
   background: url(../../../images/trash.svg) center no-repeat;
   background-color: white;
-
 }
-.news-card__icon_articles:hover{
+.news-card__icon_articles:hover {
   background: url(../../../images/trash_hover.svg) center no-repeat;
   background-color: white;
-
 }

@@ -1,9 +1,7 @@
-.two-lines__bar_first{
+.two-lines__bar_first {
   margin-bottom: 4px;
-
 }
 .change .two-lines__bar_first {
   -webkit-transform: rotate(-45deg) translate(0px, 4px);
   transform: rotate(-45deg) translate(0px, 4px);
 }
-

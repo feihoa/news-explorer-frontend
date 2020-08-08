@@ -8,21 +8,16 @@
 @import url("./__menu-links_hidden/header__menu-links-hidden.css");
 @import url("./__link-item_hidden/header__link-item_hidden.css");
 
-.header{
-
-    max-width:1440px;
-    min-width: 300px;
-    width: 100%;
-    display: flex;
-    margin: 0px auto 0px auto;
-    justify-content: space-between;
-    background: rgba(196, 196, 196, 0.01);
-    box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    box-sizing: border-box;
-    flex-wrap: wrap;
-
+.header {
+  max-width: 1440px;
+  min-width: 300px;
+  width: 100%;
+  display: flex;
+  margin: 0px auto 0px auto;
+  justify-content: space-between;
+  background: rgba(196, 196, 196, 0.01);
+  box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  flex-wrap: wrap;
 }
-
-
-
