@@ -209,7 +209,7 @@ const handleSearch = (event) => {
     console.log(URL);
 
     const newsApi = new NewsApi({
-      baseUrl: `https://praktikum.tk/news/v2/` + URL,
+      baseUrl: `https://nomoreparties.co/news/v2/` + URL,
       headers: {
         "Content-Type": "application/json",
       },
