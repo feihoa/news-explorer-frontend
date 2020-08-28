@@ -4,9 +4,6 @@ v 0.0.2
 
 https://Maliiya.github.io/news-explorer-frontend/
 
-http://news-explorer-pr.tk/
-https://news-explorer-pr.tk/
-
 ## Дипломная работа
 
 Сайт состоит из двух страниц:
