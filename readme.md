@@ -2,7 +2,7 @@
 
 v 0.0.2
 
-https://Maliiya.github.io/news-explorer-frontend/
+https://feihoa.github.io/news-explorer-frontend/
 
 ## Дипломная работа
 
